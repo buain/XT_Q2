@@ -7,7 +7,7 @@ namespace _1._12_char_doubler
 
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Console.ReadKey()//Delay;
         }
     }
 }
