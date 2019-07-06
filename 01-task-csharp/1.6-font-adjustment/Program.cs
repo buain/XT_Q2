@@ -4,67 +4,82 @@ namespace _1._6_font_adjustment
 {
     class Program
     {
-        //public static void Font()
-        //{
+        public static void Choiсe()
+        {
+            bool bold = false;
+            bool italic = false;
+            bool underline = false;
+            while (true)
+            {
+                string result = "";
+                //switch (result)
+                //{
+                //    case "bold":
+                //        result += "Bold, ";
+                //        continue;
+                //    case "italic":
+                //        result += "Italic, ";
+                //        continue;
+                //    case "underline":
+                //        result += "Underline, ";
+                //        continue;
+                //}
 
-        //}
-        //[Flags]
-        //enum Font : int
-        //{
-        //    None = 1,
-        //    bold = 2,
-        //    italic = 4,
-        //    //bold_italic = 6,
-        //    underline = 8//,
-        //                 //bold_underline = 10,
-        //                 //italic_underline = 12,
-        //                 //bold_italic_underline = 14
-        //}
-
-
+                if (bold)
+                {
+                    result += "Bold, ";
+                }
+                if (italic)
+                {
+                    result += "Italic, ";
+                }
+                if (underline)
+                {
+                    result += "Underline, ";
+                }
+                if(bold || italic || underline)
+                {
+                    Font(result.Remove(result.Length - 2));
+                }
+                else
+                {
+                    result = "None";
+                    Font(result);
+                }
+            }
+        }
+        public static void Font(string result)
+        {
+            Console.WriteLine($"Параметры надписи: {result}");
+            Console.WriteLine("Введите:");
+            string[] font = { "1: bold", "2: italic", "3: underline" };
+            for(int i = 0; i < font.Length; i++)
+            {
+                Console.WriteLine($"\t{i}");
+            }
+        }
         static void Main(string[] args)
         {
             
-            //none.ToString()
-            //Font none = Font.None;
-            Console.WriteLine($"Параметры надписи: {Font.None} ");
-            Console.WriteLine("Введите:");
-            Console.WriteLine("        1: bold");
-            Console.WriteLine("        2: italic");
-            Console.WriteLine("        3: underline");
+            
 
             int input = Int32.Parse(Console.ReadLine());
 
-            string[] font = { "None", "Bold", "Italic", "Underline" };
-
-            string output = null;
-            for(int i = 0; i < font.Length; i++)
-            {
-                if (input == font[i])
-                {
-
-                }
-            }
             
 
-                //var output = Font.bold | Font.italic | Font.underline; //Содержится или или
-                //if (output.HasFlag(Font.bold)) //содержится bold
-                //{
-                //    Console.WriteLine("Bold");
-                //}
-
-                //if (Font.IsDefined(typeof(Font), "bold"))
-                //{
-                //    Console.WriteLine("Bold");
-                //}
-
-                switch (input)
+            string[] output = null;
+            for (int i = 0; i < font.Length; i++)
+            {
+                if (input == i)
                 {
-                    case "1":
-                        if ()
-                            Console.WriteLine();
-                        continue;
+                    output.Add(font[i]);
                 }
+                else
+                {
+                    Console.WriteLine("Неверный ввод");
+                }
+            }
+
 
             Console.ReadKey();//Delay
         }
