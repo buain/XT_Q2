@@ -12,19 +12,6 @@ namespace _1._6_font_adjustment
             while (true)
             {
                 string result = "";
-                //switch (result)
-                //{
-                //    case "bold":
-                //        result += "Bold, ";
-                //        continue;
-                //    case "italic":
-                //        result += "Italic, ";
-                //        continue;
-                //    case "underline":
-                //        result += "Underline, ";
-                //        continue;
-                //}
-
                 if (bold)
                 {
                     result += "Bold, ";
@@ -46,6 +33,47 @@ namespace _1._6_font_adjustment
                     result = "None";
                     Font(result);
                 }
+                int input = 0;
+                if (Int32.TryParse(Console.ReadLine(), out input))
+                {
+                    if (input == 1)
+                    {
+                        if (bold)
+                        {
+                            bold = false;
+                        }
+                        else
+                        {
+                            bold = true;
+                        }
+                    }
+                    else if (input == 2)
+                    {
+                        if (italic)
+                        {
+                            italic = false;
+                        }
+                        else
+                        {
+                            italic = true;
+                        }
+                    }
+                    else if (input == 3)
+                    {
+                        if (underline)
+                        {
+                            underline = false;
+                        }
+                        else
+                        {
+                            underline = true;
+                        }
+                    }
+                    else if(input <= 0 || input > 3)
+                    {
+                        Console.WriteLine("\nНеверный ввод. Введите номер шрифта: ");
+                    }
+                }
             }
         }
         public static void Font(string result)
@@ -55,31 +83,12 @@ namespace _1._6_font_adjustment
             string[] font = { "1: bold", "2: italic", "3: underline" };
             for(int i = 0; i < font.Length; i++)
             {
-                Console.WriteLine($"\t{i}");
+                Console.WriteLine($"\t{font[i]}");
             }
         }
         static void Main(string[] args)
         {
-            
-            
-
-            int input = Int32.Parse(Console.ReadLine());
-
-            
-
-            string[] output = null;
-            for (int i = 0; i < font.Length; i++)
-            {
-                if (input == i)
-                {
-                    output.Add(font[i]);
-                }
-                else
-                {
-                    Console.WriteLine("Неверный ввод");
-                }
-            }
-
+            Choiсe();
 
             Console.ReadKey();//Delay
         }
