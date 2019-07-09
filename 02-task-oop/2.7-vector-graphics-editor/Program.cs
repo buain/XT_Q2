@@ -6,7 +6,7 @@ namespace _2._7_vector_graphics_editor
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Console.ReadKey(); //Delay
         }
     }
 }
