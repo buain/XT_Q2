@@ -4,26 +4,26 @@ namespace _2._3_user
 {
     class User
     {
-        public string name;
+        private string name;
         public string Name
         {
             get { return name; }
             set { name = value; }
         }
-        public string surname;
+        private string surname;
         public string Surname
         {
             get { return surname; }
             set { surname = value; }
         }
-        public string otchestvo;
+        private string otchestvo;
         public string Otchestvo
         {
             get { return otchestvo; }
             set { otchestvo = value; }
         }
-        public DateTime birthday;
-        public int age;
+        public DateTime Birthday;
+        private int age;
         public int Age
         {
             get { return age; }
@@ -40,15 +40,15 @@ namespace _2._3_user
         {
             User user = new User();
            
-            user.name = "Ivan";
-            user.surname = "Petrov";
-            user.otchestvo = "Andreevich";
-            user.birthday = new DateTime(1994, 05, 24);
-            user.age = 25;
+            user.Name = "Ivan";
+            user.Surname = "Petrov";
+            user.Otchestvo = "Andreevich";
+            user.Birthday = new DateTime(1994, 05, 24);
+            user.Age = 25;
 
             user.Show();
 
-            Console.WriteLine(user.birthday.ToString("d"));
+            Console.WriteLine(user.Birthday.ToString("d"));
             Console.ReadKey(); //Delay
         }
     }

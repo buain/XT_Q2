@@ -2,26 +2,67 @@
 
 namespace _2._6_ring
 {
-    class Circle //Окружность
+    class Ring
     {
-        public int x; //координата х
-        public int y; //координата y
-        public int radius; //радиус окружности
-        public double Circuit() //длина окружности
+        private int x; //координата х
+        public int X
         {
-            return 2 * Math.PI * radius; 
+            get { return x; }
+            set { x = value; }
         }
-    }
-    class Ring : Circle //кольцо
-    {
-        public int innerRadius; //внутренний радиус
+        private int y; //координата y
+        public int Y
+        {
+            get { return y; }
+            set { y = value; }
+        }
+        private int outerRadius; //внешний радиус
+        public int OuterRadius
+        {
+            get { return outerRadius; }
+            set
+            {
+                if (value > 0) // проверка на корректность внешнего радиуса
+                {
+                    outerRadius = value;
+                }
+                else
+                {
+                    Console.WriteLine("Внешний радиус кольца не может быть меньшим или равным нулю");
+                }
+            }
+        }
+        private int innerRadius; //внутренний радиус
+        public int InnerRadius
+        {
+            get { return innerRadius; }
+            set
+            {
+                if (value < 0) // проверка на корректность внутреннего радиуса
+                {
+                    Console.WriteLine("Внешний радиус кольца не может быть меньшим или равным нулю");
+                }
+                else if(value > outerRadius)
+                {
+                    Console.WriteLine("Внутрений радиус кольца не может быть больше, чем внешний");
+                }
+                else
+                {
+                    innerRadius = value;
+                }
+            }
+        }
         public double Area() //площадь кольца
         {
-            return Math.PI * (radius * radius - innerRadius * innerRadius);
+            return Math.PI * (OuterRadius * OuterRadius - InnerRadius * InnerRadius);
+        }
+        public double Circuit() //длина окружности
+        {
+            return 2 * Math.PI * OuterRadius;
         }
         public double innerCircuit() //длина внутренней окружности кольца
         {
-            return 2 * Math.PI * innerRadius;
+            return 2 * Math.PI * InnerRadius;
         }
     }
     class Program
@@ -29,10 +70,10 @@ namespace _2._6_ring
         static void Main(string[] args)
         {
             Ring ring = new Ring();
-            ring.x = 55;
-            ring.y = 55;
-            ring.radius = 20;
-            ring.innerRadius = 15;
+            ring.X = 55;
+            ring.Y = 55;
+            ring.OuterRadius = 20;
+            ring.InnerRadius = 15;
 
             double area = ring.Area();
             double circuit = ring.Circuit();

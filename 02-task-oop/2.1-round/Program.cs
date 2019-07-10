@@ -4,53 +4,43 @@ namespace _2._1_round
 {
     class Round
     {
-        public int x; // координата x
+        private int x; // координата x
         public int X
         {
             get { return x; }
-            set
-            {
-                if(value > 0)    //проверка на 0 и -
-                {
-                    x = value;
-                };
-            }
+            set { x = value; }
         }
-        public int y;  // координата y
+        private int y;  // координата y
         public int Y
         {
             get { return y; }
-            set
-            {
-                if (value > 0)    //проверка на 0 и -
-                {
-                    y = value;
-                };
-            }
+            set { y = value; }
         }
-        public int radius; // радиус окружности
+        private int radius; // радиус окружности
         public int Radius
         {
             get { return radius; }
             set
             {
-                if (value > x || value > y)    //проверка на выход за границы координат
+                if(value < 0)
                 {
-                    Console.WriteLine("Слишком большой радиус"); 
+                    Console.WriteLine("Радиус не может быть отрицательным");
                 }
                 else
                 {
                     radius = value;
-                };
+                }
             }
         }
-        public double Circuit() //длина окружности
+        public void Circuit() //длина окружности
         {
-            return 2 * Math.PI * radius;
+            var result = 2 * Math.PI * Radius;
+            Console.WriteLine($"Длина окружности: {result}");
         }
-        public double Area() //площадь круга
+        public void Area() //площадь круга
         {
-            return Math.PI * radius * radius;
+            var result = Math.PI * Radius * Radius;
+            Console.WriteLine($"Площадь круга: {result}");
         }
     }
    
@@ -58,25 +48,15 @@ namespace _2._1_round
     {
         static void Main(string[] args)
         {
-            //Round round = new Round();
+            Round round = new Round();
 
-            //round.x = -100;
-            //round.y = -150;
-            //round.radius = 175;
+            round.X = -100;
+            round.Y = 150;
+            round.Radius = 75;
 
-            Round round = new Round
-            {
-                x = -100,
-                y = 150,
-                radius = 175
-            };
-            //!!! НЕ РАБОТАЮТ ПРОВЕРКИ!!!
-            double circuit = round.Circuit();
-            double area = round.Area();
+            round.Circuit();
+            round.Area();
 
-            Console.WriteLine($"Длина окружности: {circuit}");
-            Console.WriteLine($"Площадь круга: {area}");
-            
             Console.ReadKey(); //Delay
         }
     }

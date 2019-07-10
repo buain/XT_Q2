@@ -4,24 +4,31 @@ namespace _2._2_triangle
 {
     class Triangle
     {
-        public int a;
+        private int a;
         public int A
         {
             get { return a; }
             set { a = value; }
         }
-
-        static void Perimeter(int a, int b, int c)
+        private int b;
+        public int B
         {
-            int p = 0;
-            p = a + b + c;
-            Console.WriteLine($"Периметр треугольника: {p}");
+            get { return b; }
+            set { b = value; }
         }
-        static void Square(int a, int b, int c, int p)
+        private int c;
+        public int C
         {
-            double square;
-            square = Math.Sqrt(p * (p - a) * (p - b) * (p - c));
-            Console.WriteLine($"Площадь треугольника: {square}");
+            get { return c; }
+            set { c = value; }
+        }
+        public int Perimeter()
+        {
+            return A + B + C;
+        }
+        public double Square(int P)
+        {
+            return Math.Sqrt(P * (P - A) * (P - B) * (P - C));
         }
     }
     class Program
@@ -30,14 +37,17 @@ namespace _2._2_triangle
         {
             //Triangle a = new Triangle { a = 6 };
             Triangle instance = new Triangle();
-            instance.a = 6;
-            instance.b = 9;
-            instance.c = 12;
+            instance.A = 6;
+            instance.B = 9;
+            instance.C = 12;
 
+            int P = instance.Perimeter();
+            double square = instance.Square(P);
 
+            Console.WriteLine($"Стороны треугольника:  {instance.A}, {instance.B}, {instance.C}");
+            Console.WriteLine($"Периметр треугольника: {P}");
+            Console.WriteLine($"Площадь треугольника: {square}");
 
-            //instance.
-            Console.WriteLine($"Стороны треугольника: ", instance.a, instance.b, instance.c);
             Console.ReadKey(); //Delay
         }
     }
