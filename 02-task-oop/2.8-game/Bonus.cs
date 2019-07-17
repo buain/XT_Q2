@@ -18,7 +18,7 @@ namespace _2._8_game
             Console.WriteLine("Apple gives +5 Health");
         }
     }
-    public class Cherry : Bonus, IPoint // бонус - вишня
+    public class Cherry : Bonus, IPoint // Бонус - вишня
     {
         int IPoint.X { get; set; }
         int IPoint.Y { get; set; }
