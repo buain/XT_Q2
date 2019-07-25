@@ -17,6 +17,10 @@ namespace _3._2_word_frequency
                 }
             }
             string[] array_words = clear_words.Split();
+            //foreach(var x in array_words)
+            //{
+            //    Console.WriteLine(x);
+            //}
             //AddList(array_words);
             AddDict(array_words);
         }
@@ -28,30 +32,69 @@ namespace _3._2_word_frequency
         //    {
         //        list_text.Add(i);
         //    }
+        //}
 
         //}
         public static void AddDict(string[] items) // Add array to Dict
         {
-           // Dictionary<string, int> dict = new Dictionary<string, int>();
-            int count = 0;
-            for(int i = 0; i < items.Length; i++)
+            //Dictionary<string, int> dict = new Dictionary<string, int>();
+            var dict = new Dictionary<string, int>();
+            //int count;
+            int j = 1;
+            int k = 1;
+            for (int i = 1; i < items.Length; i++)
             {
-                if(items[i] == "and")
-                {
-                    count++;
-                }
-                Console.WriteLine($"Слово {items} повторялось {count} раз");
-            }
-        }
 
+                if (!dict.ContainsKey(items[i]))
+                {
+                    //dict.Remove(items[i]);
+                    //j++;
+                    создать метод, когда повторяющийся элемент перезаписывается
+                    //j++;
+
+                    //dict[items[i]] = j++;
+                    //dict.TryAdd(items[i], j++);
+                }
+
+                else
+                {
+                    dict.Add(items[i], k);
+                }
+
+            }
+            foreach (KeyValuePair<string, int> kv in dict)
+            {
+                Console.WriteLine($"{kv}  ");
+            }
+            Exist(dict);
+        }
+        
+        public static void Exist(Dictionary<string, int> items)
+        {
+            //int result = items.ContainsValue("and");
+            int result = 0;
+            //foreach(var i in items)
+            //{
+            if (items.ContainsKey("and"))
+            {
+                result++;
+            }
+
+            //}
+            Console.WriteLine($"Слово \"and\" повторялось {result} раз");
+
+
+
+
+        }
 
         static void Main(string[] args)
         {
-            string text = "My cat eat meat and drink milk. And my dog eat meat and drink milk too. I like my cat and dog";
+            string text = "My cat eat meat and drink milk. And my dog eat meat and drink milk too. I like my cat and my dog";
             Console.WriteLine($"Предложение: {text}");
             string low_text = text.ToLower(); //Перевод всех слов в нижний регистр
             Clear(low_text);
-            
+            //Console.WriteLine(low_text);
 
             //var list_text = low_text.Split(new[] { "." }, StringSplitOptions.RemoveEmptyEntries)
             //    .Select(x => x.Split(new[] { " ", "," }, StringSplitOptions.RemoveEmptyEntries).ToList())
@@ -59,7 +102,7 @@ namespace _3._2_word_frequency
 
 
             //Console.WriteLine(list_text);
-            
+
 
             Console.ReadKey();//Delay
         }
