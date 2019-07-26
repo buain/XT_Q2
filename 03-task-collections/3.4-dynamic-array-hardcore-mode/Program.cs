@@ -6,7 +6,8 @@ namespace _3._4_dynamic_array_hardcore_mode
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            //Sorry, don't have time for it task(((
+            Console.ReadKey(); //Delay
         }
     }
 }
