@@ -6,17 +6,14 @@ namespace _4._4_number_array_sum
 {
     public static class SumExtention
     {
-        public static int Sum(this int[] collection, Predicate <int>[] condition)
+        public static int Sum(this int[] collection, int[] condition)
         {
-            var sum = 0;
-            var items = new List<int>();
-            foreach (var item in collection)
-            {
-                if (condition(item))
-                {
-                    items.Add(item);
-                }
-            }
+            int sum = 0;
+            var items = new int[collection.Length + condition.Length];
+            //Add arrays collection and condition to array items:
+            collection.CopyTo(items, 0);
+            condition.CopyTo(items, collection.Length);
+
             foreach (var i in items)
             {
                 sum += i;

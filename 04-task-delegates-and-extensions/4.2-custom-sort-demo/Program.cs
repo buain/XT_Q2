@@ -38,15 +38,29 @@ namespace _4._2_custom_sort_demo
                         items[i] = items[j];
                         items[j] = temp;
                     }
-                    //if (items[i].Length == items[j].Length)
-                    //{
-                    //    CompareTo(items[i], items[j]);
-                    //}
+                    if (items[i].Length == items[j].Length)
+                    {
+                        if (CheckEquals(items[i], items[j]))
+                        {
+                            temp = items[i];
+                            items[i] = items[j];
+                            items[j] = temp;
+                        }
+                    }
+                        
                 }
             }
             return items;
         }
-
+        private static bool CheckEquals(string s1, string s2)
+        {
+            for(int i = 0; i < (s1.Length > s2.Length ? s2.Length : s1.Length); i++)
+            {
+                if (s1.ToCharArray()[i] < s2.ToCharArray()[i]) return false;
+                if (s1.ToCharArray()[i] > s2.ToCharArray()[i]) return true;
+            }
+            return false;
+        }
         
         static void Main(string[] args)
         {
