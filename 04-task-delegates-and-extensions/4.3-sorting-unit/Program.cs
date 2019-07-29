@@ -5,14 +5,11 @@ using System.Threading;
 
 namespace _4._3_sorting_unit
 {
-    class Program
+    delegate int[] delegate_sort<T>(int[] items);
+    static class SortThread
     {
-        delegate int[] delegate_sort<T>(int[] items);
-
-        //public delegate void Sort_Handler(string message);
-        //public event Sort_Handler EndSort; // 3-Event
-        
-        private static int[] Sort(int[] items) // 1-Sorting array
+        public static event Action<string> Done;
+        public static int[] Sort(int[] items) // 1-Sorting array
         {
             int temp = 0;
             for (int i = 0; i < items.Length - 1; i++)
@@ -28,55 +25,29 @@ namespace _4._3_sorting_unit
                     }
                 }
             }
-            //if (EndSort != null)
-            //{
-            //    EndSort("Sorting is done...");
-            //}
-            //EndSort?.Invoke("Sorting is done...");
             return items;
         }
-        //public event EventHandler<EventArgs> EndSort
-        
-        //{
-
-        //}
-
+        public static void ThreadSort(int[] items) // 2-Sorting in thread
+        {
+            Thread myThread = new Thread(() =>
+            {
+                Sort(items);
+                Done?.Invoke("Sorting is done"); // 3-Event indicating the completion of sorting
+            });
+            myThread.Start();
+        } 
+    }
+    class Program
+    {
+        static void DoneNotice(string notice)
+        {
+            Console.WriteLine(notice);
+        }
         static void Main(string[] args)
         {
             int[] array = { 4, 5, 6, 1, 9 };
-            Console.WriteLine("Unsorted array:");
-            foreach (int i in array)
-            {
-                Console.Write(i + " ");
-            }
-
-            delegate_sort<int> sort = Sort;
-            int[] sorted_array = sort(array);
-            
-
-            Console.WriteLine("\nSorted array:");
-            foreach (int i in sorted_array)
-            {
-                Console.Write(i + " ");
-            }
-
-            //Anonymous method
-            delegate_sort<int> handler = delegate (int[] items)
-            {
-                for (int i = 0; i < items.Length; i++)
-                {
-                    items[i] = items[i] * 2;
-                    Thread.Sleep(500);
-                }
-                return items;
-            };
-            handler(array);
-
-            //ThreadStart _handler = new ThreadStart(handler);
-            Thread myThread = new Thread(handler);
-            myThread.Start();
-
-            
+            SortThread.Done += DoneNotice;
+            SortThread.ThreadSort(array);
 
             Console.ReadKey(); //Delay;
         }
