@@ -47,8 +47,7 @@ namespace _05_task_files
             }
             else
             {
-                return "Wrong drive";
-                
+                return "Wrong drive. Try again";
             }
         }
         public static void Create_Directory()
@@ -85,7 +84,10 @@ namespace _05_task_files
 
             Console.WriteLine("Select file handling: 1-watching, 2-rollback");      
             int select_mode = Select_Mode(Console.ReadLine());
-           
+
+            Repository.Create_Repository(select_disk);
+            string text = "Hello EPAM!";
+
 
             Console.ReadKey(); //Delay
         }
