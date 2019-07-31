@@ -7,22 +7,22 @@ namespace _05_task_files
 {
     class Watch
     {
-
-        public static void Create_File(string disk, string text)
+        public static void Create_File(string disk, string text, string file)
         {
-            //File:
-            //string file = "note.txt";
-            using (FileStream fstream = new FileStream(disk + @":\Repo\Now\note.txt", FileMode.OpenOrCreate))
+
+            //File:   
+            using (FileStream fstream = new FileStream(disk + @":\Repo\Now\" + file + ".txt", FileMode.Create))
             {
                 // string to bytes
                 byte[] array = Encoding.Default.GetBytes(text);
                 // write array of bytes into file
                 fstream.Write(array, 0, array.Length);
-                Console.WriteLine($@"Text wrote to file: {disk}:\Repo\Now\note.txt");
+                Console.WriteLine($@"Text is written to file: {disk}:\Repo\Now\{file}.txt");
             }
             DateTime dt = DateTime.Now;
+
             //Log File:
-            using (FileStream fstream = new FileStream(disk + @":\Repo\Log\note_(" + dt.ToString("dd.mm.yyyy-hh.mm.ss") + @").txt", FileMode.OpenOrCreate))
+            using (FileStream fstream = new FileStream(disk + @":\Repo\Log\"+ file + dt.ToString("_dd.MM.yyyy-HH.mm.ss") + ".txt", FileMode.Create))
             {
                 // string to bytes
                 byte[] array = Encoding.Default.GetBytes(text);

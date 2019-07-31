@@ -24,7 +24,7 @@ namespace _05_task_files
                 }
                 else
                 {
-                    Console.WriteLine("Wrong input!");
+                    Console.WriteLine("Wrong input! Try again");
                 }
             }
             else
@@ -64,7 +64,11 @@ namespace _05_task_files
 
         static void Main(string[] args)
         {
-            //Info about disks on users PC:
+            //Select mode for work:
+            Console.WriteLine("Select file handling: 1-watching, 2-rollback");
+            int select_mode = Select_Mode(Console.ReadLine());
+
+            //Info about disks on PC:
             DriveInfo[] drives = DriveInfo.GetDrives();
             foreach (DriveInfo drive in drives)
             {
@@ -78,26 +82,28 @@ namespace _05_task_files
                 }
                 Console.WriteLine();
             }
+            //Select drive for work:
             Console.WriteLine("Select Disk drive. Preferably C or D ");
             string select_disk = Select_Drive(Console.ReadLine());
             Console.WriteLine($"You select drive: {select_disk}");
 
             Repository.Create_Repository(select_disk);
 
-            Console.WriteLine("Select file handling: 1-watching, 2-rollback");      
-            int select_mode = Select_Mode(Console.ReadLine());
-
-            string text = "Hello EPAM!";
-
             switch (select_mode)
             {
-                case 1:
-                Watch.Create_File(select_disk, text);
+                case 1: //Watch
+                    Console.WriteLine("Input file name: ");
+                    string file_name = Console.ReadLine();
+                    Console.WriteLine("Input text:");
+                    string text = Console.ReadLine();
+                    Watch.Create_File(select_disk, text, file_name);
                     break;
-                case 2:
-                    RollBack.DisplayBackUps();
-                    Console.WriteLine("Input date and time to rollback file:");
-                    RollBack.CopyToNow(select_disk);
+                case 2: //RollBack
+                    RollBack.DisplayBackUps(select_disk);
+                    Console.WriteLine("Choose file and input date and time, like in arhives (dd.MM.yyyy-HH.mm.ss), to rollback file:");
+                    string rollback_datetime = Console.ReadLine();
+                    RollBack.FindFile(select_disk, rollback_datetime);
+                    //RollBack.CopyToNow(select_disk, rollback_datetime);
                     break;
             }
                 
