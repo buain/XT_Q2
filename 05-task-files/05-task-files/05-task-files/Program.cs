@@ -82,12 +82,32 @@ namespace _05_task_files
             string select_disk = Select_Drive(Console.ReadLine());
             Console.WriteLine($"You select drive: {select_disk}");
 
+            Repository.Create_Repository(select_disk);
+
             Console.WriteLine("Select file handling: 1-watching, 2-rollback");      
             int select_mode = Select_Mode(Console.ReadLine());
 
-            Repository.Create_Repository(select_disk);
             string text = "Hello EPAM!";
 
+            switch (select_mode)
+            {
+                case 1:
+                Watch.Create_File(select_disk, text);
+                    break;
+                case 2:
+                    RollBack.DisplayBackUps();
+                    Console.WriteLine("Input date and time to rollback file:");
+                    RollBack.CopyToNow(select_disk);
+                    break;
+            }
+                
+
+
+
+            
+            
+
+            
 
             Console.ReadKey(); //Delay
         }
