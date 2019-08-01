@@ -7,40 +7,37 @@ namespace _05_task_files
 {
     class RollBack
     {
-        public static void DisplayBackUps(string disk)
+        public static void DisplayBackUps(string log_path)
         {
-            if (Directory.Exists(disk + @":\Repo\Log\"))
+            Console.WriteLine("\nArchive files:");
+            string[] files = Directory.GetFiles(log_path);
+            foreach (string s in files)
             {
-                Console.WriteLine();
-                Console.WriteLine("Archive files:");
-                string[] files = Directory.GetFiles(disk + @":\Repo\Log\");
-                foreach (string s in files)
-                {
-                    Console.WriteLine(s);
-                }
+                Console.WriteLine(s);
             }
         }
-        public static void DeleteFileNow(string disk, string file_delete)
+        public static void DeleteFileNow(string path)
         {
-            FileInfo fileInf = new FileInfo(disk + @":\Repo\Now\" + file_delete + ".txt");
+            FileInfo fileInf = new FileInfo(path);
             if (fileInf.Exists)
             {
                 fileInf.Delete();
             }
+            Console.WriteLine($"File \"{path}\" deleted");
         }
         //Get file:
-        public static void FindFile(string disk, string rollback_datetime)
+        public static void FindFile(string log_path, string rollback_datetime)
         {
-            DirectoryInfo dir = new DirectoryInfo(disk + @":\Repo\Log\");
+            DirectoryInfo dir = new DirectoryInfo(log_path);
             FileInfo[] fileInDir = dir.GetFiles("*" + rollback_datetime + "*.*");
             foreach (FileInfo foundFile in fileInDir)
             {
                 string fullName = foundFile.FullName;
-                CopyToNow(fullName, disk, rollback_datetime);
+                CopyToNow(fullName, rollback_datetime);
             }
         }
         //Copy arhive file to working directory
-        public static void CopyToNow(string path, string disk, string rollback_datetime)
+        public static void CopyToNow(string path, string rollback_datetime)
         {
             string filename = path.Replace("_" + rollback_datetime, "");
             string newPath = filename.Replace("Log", "Now");
@@ -49,7 +46,7 @@ namespace _05_task_files
             if (fileInf.Exists)
             {
                 fileInf.CopyTo(newPath, true);
-                Console.WriteLine($"File: {fileInf.Name} restored to working path");
+                Console.WriteLine($"File: {fileInf.Name} rollback to working path");
             }
         }      
     }
