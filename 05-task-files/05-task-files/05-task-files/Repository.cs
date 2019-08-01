@@ -9,7 +9,6 @@ namespace _05_task_files
         public static void Create_Repository(string disk)
         {
             string path = disk + @":\Repo";
-            string rollback = @"RollBack";
             string now = @"Now";
             string log = @"Log";
             DirectoryInfo dirInfo = new DirectoryInfo(path);
@@ -17,7 +16,6 @@ namespace _05_task_files
             {
                 dirInfo.Create();
             }
-            dirInfo.CreateSubdirectory(rollback);
             dirInfo.CreateSubdirectory(now);
             dirInfo.CreateSubdirectory(log);
         }
