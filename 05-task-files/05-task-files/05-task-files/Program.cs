@@ -117,6 +117,8 @@ namespace _05_task_files
             Console.WriteLine("If you first time here. Please, select 1.");
             int select_mode = Select_Mode();
 
+
+
             switch (select_mode)
             {
                 case 1: //Add text to file
