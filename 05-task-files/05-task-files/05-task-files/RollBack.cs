@@ -29,7 +29,7 @@ namespace _05_task_files
         public static void FindFile(string log_path, string rollback_datetime)
         {
             DirectoryInfo dir = new DirectoryInfo(log_path);
-            FileInfo[] fileInDir = dir.GetFiles("*" + rollback_datetime + "*.*");
+            FileInfo[] fileInDir = dir.GetFiles("*" + rollback_datetime + ".txt");
             foreach (FileInfo foundFile in fileInDir)
             {
                 string fullName = foundFile.FullName;

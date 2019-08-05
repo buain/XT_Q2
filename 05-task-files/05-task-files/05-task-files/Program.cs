@@ -91,7 +91,7 @@ namespace _05_task_files
                 }
             }
         }
-
+       
         static void Main(string[] args)
         {
             Console.WriteLine("Wellcome to BackUp System!\n");
@@ -107,6 +107,7 @@ namespace _05_task_files
             string work_path = select_disk + @":\Repo\Now\";
             string file_path = select_disk + @":\Repo\Now\" + file_name + ".txt";
             string log_path = select_disk + @":\Repo\Log\";
+
             //Select mode for work:
             Console.WriteLine("What do you want to do with file?: " +
                               "\n1-Add text to file, " +
@@ -171,7 +172,7 @@ namespace _05_task_files
 
                         Console.WriteLine("Choose file and input date and time, like in arhives (dd.MM.yyyy-HH.mm.ss), to rollback file:");
                         string rollback_datetime = Console.ReadLine();
-                        RollBack.FindFile(select_disk, rollback_datetime);
+                        RollBack.FindFile(log_path, rollback_datetime);
                     }
                     else
                     {
