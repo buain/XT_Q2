@@ -16,7 +16,7 @@ namespace _05_task_files
                 {
                     Console.WriteLine(line);
                 }
-            }
+            }      
         }
     }
 }

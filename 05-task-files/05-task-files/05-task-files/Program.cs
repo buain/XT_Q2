@@ -104,7 +104,8 @@ namespace _05_task_files
 
             Console.WriteLine("Input file name: ");
             string file_name = Console.ReadLine();
-            string work_path = select_disk + @":\Repo\Now\" + file_name + ".txt";
+            string work_path = select_disk + @":\Repo\Now\";
+            string file_path = select_disk + @":\Repo\Now\" + file_name + ".txt";
             string log_path = select_disk + @":\Repo\Log\";
             //Select mode for work:
             Console.WriteLine("What do you want to do with file?: " +
@@ -125,14 +126,14 @@ namespace _05_task_files
                     Console.WriteLine("Input text:");
                     string text = Console.ReadLine();
 
-                    AddFile.Create_File(work_path, text);
-                    string old_text = AddFile.Read_File(work_path);
+                    AddFile.Create_File(file_path, text);
+                    string old_text = AddFile.Read_File(file_path);
                     AddFile.Create_Log(log_path, old_text);            
                     break;
                 case 2: //Display text
-                    if(Directory.Exists(work_path))
+                    if(File.Exists(file_path))
                     {
-                        Display_text.PrintText(work_path);
+                        Display_text.PrintText(file_path);
                     }
                     else
                     {
@@ -141,9 +142,9 @@ namespace _05_task_files
                     }
                     break;
                 case 3: //Delete file
-                    if (Directory.Exists(work_path))
+                    if (File.Exists(file_path))
                     {
-                        RollBack.DeleteFileNow(work_path);
+                        RollBack.DeleteFileNow(file_path);
                     }
                     else
                     {
@@ -152,9 +153,9 @@ namespace _05_task_files
                     }
                     break;
                 case 4: //Clear file
-                    if (Directory.Exists(work_path))
+                    if (File.Exists(file_path))
                     {
-                        AddFile.Clear_File(work_path);
+                        AddFile.Clear_File(file_path);
                     }
                     else
                     {
@@ -164,7 +165,7 @@ namespace _05_task_files
                     break;
 
                 case 5: //Rollback old file
-                    if (Directory.Exists(log_path))
+                    if (File.Exists(file_path))
                     {
                         RollBack.DisplayBackUps(log_path);
 
