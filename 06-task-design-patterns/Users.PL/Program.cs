@@ -1,4 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Users.Entities;
 
 namespace Users.PL
 {
@@ -19,21 +24,34 @@ namespace Users.PL
 
             var input = Console.ReadLine();
 
-            if(uint.TryParse(input, out uint SelectedOption)
+            if (uint.TryParse(input, out uint SelectedOption)
                 && SelectedOption > 0
                 && SelectedOption < 5)
             {
                 switch (SelectedOption)
                 {
                     case 1:
-                        //UserList.AddUser....
+                        //TODO BLL - add user
+                        //UserList.AddUser()....
+                        Console.WriteLine("Input user name:");
+                        var name = Console.ReadLine();
+
+                        Console.WriteLine("Input user BirthDay in format dd.MM.yyyy:");
+                        DateTime birthday = DateTime.Parse(Console.ReadLine());
+                        //int age = DateTime.Today.Year - birthday.Year;
+
+
                         SelectToDo();
                         break;
                     case 2:
-                        //UserList.DeleteUser....
+                        //TODO BLL - prepear to delete user
+                        //TODO DAL - delete user
+                        //UserList.DeleteUser()....
                         SelectToDo();
                         break;
                     case 3:
+                        //TODO BLL - get all users
+                        //TODO PL - show all users
                         //ShowUsers(UserList.GetAllUsers())
                         SelectToDo();
                         break;
@@ -42,6 +60,16 @@ namespace Users.PL
                 }
             }
         }
+        //internal static void CreateUser()
+        //{
 
+        //    Console.WriteLine("Input user name:");
+        //    var name = Console.ReadLine();
+
+        //    Console.WriteLine("Input user BirthDay in format dd.MM.yyyy:");
+        //    DateTime birthday = DateTime.Parse(Console.ReadLine());
+        //    int age = DateTime.Today.Year - birthday.Year;
+
+        //}
     }
 }

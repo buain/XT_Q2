@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace _6._2_and_awards
+namespace _06_task_design_patterns
 {
     class Program
     {

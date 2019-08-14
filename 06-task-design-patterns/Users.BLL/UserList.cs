@@ -1,14 +1,18 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace Users.BLL
 {
     public class UserList
     {
-        public static GetAllUsers()
+        public void GetAllUsers()
         {
 
         }
-        public static void AddUser()
+        public void AddUser()
         {
 
         }
