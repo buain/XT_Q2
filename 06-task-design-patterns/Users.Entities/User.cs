@@ -10,14 +10,8 @@ namespace Users.Entities
     {
         // There is characters of User (Id, Name, BirthDay, Age)
         
-        internal int id = 0;
-        public int Id
-        {
-            set
-            {
-                id++;
-            }
-        }
+        public Guid Id { get;set; }
+
         private string name;
         public string Name
         {
@@ -69,6 +63,10 @@ namespace Users.Entities
                 //Age = age;
                 Age = DateTime.Today.Year - birthday.Year;
             }
+        }
+        public User()
+        {
+
         }
     }
 }
