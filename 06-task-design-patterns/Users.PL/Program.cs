@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Users.Entities;
+using Users.BLL;
 
 namespace Users.PL
 {
@@ -11,10 +12,10 @@ namespace Users.PL
     {
         static void Main(string[] args)
         {
-            SelectToDo();
+            SelectOptionByUser();
             Console.ReadKey();
         }
-        public static void SelectToDo()
+        public static void SelectOptionByUser()
         {
             Console.WriteLine("Choose what to do with user's info:");
             Console.WriteLine("1.Create.");
@@ -35,25 +36,25 @@ namespace Users.PL
                         //UserList.AddUser()....
                         Console.WriteLine("Input user name:");
                         var name = Console.ReadLine();
-
+                        Guid Id = default(Guid);
                         Console.WriteLine("Input user BirthDay in format dd.MM.yyyy:");
                         DateTime birthday = DateTime.Parse(Console.ReadLine());
-                        //int age = DateTime.Today.Year - birthday.Year;
+                        int age = DateTime.Today.Year - birthday.Year;
+                        UsersManager.AddUser(Id, name, birthday, age);
 
-
-                        SelectToDo();
+                        SelectOptionByUser();
                         break;
                     case 2:
                         //TODO BLL - prepear to delete user
                         //TODO DAL - delete user
                         //UserList.DeleteUser()....
-                        SelectToDo();
+                        SelectOptionByUser();
                         break;
                     case 3:
-                        //TODO BLL - get all users
+                        //TODO BLL - get all users 
                         //TODO PL - show all users
                         //ShowUsers(UserList.GetAllUsers())
-                        SelectToDo();
+                        SelectOptionByUser();
                         break;
                     case 4:
                         return;

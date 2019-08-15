@@ -10,7 +10,7 @@ namespace Users.Entities
     {
         // There is characters of User (Id, Name, BirthDay, Age)
         
-        public Guid Id { get;set; }
+        public Guid Id { get; private set; }
 
         private string name;
         public string Name
@@ -55,18 +55,28 @@ namespace Users.Entities
             }
         }
         //public int age = DateTime.Today.Year - birthday.Year;
-        //private int age;
+        private int age;
         public int Age
         {
             set
             {
                 //Age = age;
-                Age = DateTime.Today.Year - birthday.Year;
+                age = DateTime.Today.Year - birthday.Year;
             }
         }
-        public User()
+        //public User(string name, DateTime birthday)
+        //{
+        //    this.Id = Guid.NewGuid();
+        //    this.Name = name;
+        //    this.BirthDay = birthday;
+        //}
+        public User(Guid Id, string name, DateTime birthday, int age)
+            //this(name, birthday)
         {
-
+            this.Id = Guid.NewGuid();
+            this.Name = name;
+            this.BirthDay = birthday;
+            this.Age = age;
         }
     }
 }

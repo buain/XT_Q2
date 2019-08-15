@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace Users.Entities
 {
-    public class IStorable
+    public interface IStorable
     {
+        bool AddUser(User user);
         ICollection<User> GetAllUsers();
 
         //ICollection<Awards> 

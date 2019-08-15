@@ -41,10 +41,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="UserList.cs" />
+    <Compile Include="UsersManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Users.Common\Users.Common.csproj">
+      <Project>{751df1ac-4421-4689-bf4c-4e471eb37313}</Project>
+      <Name>Users.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Users.DAL\Users.DAL.csproj">
       <Project>{a658731d-cda9-4835-9c87-35e2b5d39511}</Project>
       <Name>Users.DAL</Name>

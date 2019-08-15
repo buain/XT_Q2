@@ -7,9 +7,11 @@ using Users.Entities;
 
 namespace Users.DAL
 {
-    public class FileStorageUsers //: IStorable
+    public class FileStorageUsers : IStorable
     {
-        public void AddUser()
+        private static List<User> Users { get; set; }
+        string file_users = @"C:\Task6\users.txt";
+        public void AddUser() //Сделать запись в файл с помощью StreamWriter (Task 5)
         {
 
         }
@@ -17,9 +19,16 @@ namespace Users.DAL
         {
 
         }
-        public ICollection<User> SelectAllUsers()
+        public bool AddUser(User user)
         {
-
+            if (Users.Any(n => n.Id == user.Id))
+                return false;
+            Users.Add(user);
+            return true;
+        }
+        public ICollection<User> GetAllUsers()
+        {
+            return Users;
         }
     }
     
