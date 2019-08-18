@@ -11,7 +11,7 @@ namespace Users.DAL
     {
         private static List<User> Users { get; set; }
         string file_users = @"C:\Task6\users.txt";
-        public void AddUser() //Сделать запись в файл с помощью StreamWriter (Task 5)
+        public void AddUser() //Сделать запись в файл с помощью StreamWriter
         {
 
         }
