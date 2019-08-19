@@ -34,6 +34,7 @@ namespace Users.PL
                     case 1:
                         //TODO BLL - add user
                         //UserList.AddUser()....
+
                         Console.WriteLine("Input user name:");
                         var name = Console.ReadLine();
                         Guid Id = default(Guid);
