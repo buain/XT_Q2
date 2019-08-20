@@ -49,6 +49,9 @@ namespace Users.PL
                         //TODO BLL - prepear to delete user
                         //TODO DAL - delete user
                         //UserList.DeleteUser()....
+                        Console.WriteLine("Input user name to delete:");
+                        var name_delete = Console.ReadLine();
+                        UsersManager.
                         SelectOptionByUser();
                         break;
                     case 3:
