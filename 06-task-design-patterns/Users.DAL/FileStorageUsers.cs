@@ -11,7 +11,7 @@ namespace Users.DAL
     public class FileStorageUsers : IStorable
     {
         private static List<User> Users { get; set; }
-        string file_users = @"C:\Task6\users.txt";
+        //string file_users = @"C:\Task6\users.txt";
         public void AddUser(Guid id, string name, DateTime birthday, int age) //Сделать запись в файл с помощью StreamWriter
         {
             //using (FileStream fstream = new FileStream(@"C:\Task6\users.txt", FileMode.Append))
@@ -30,10 +30,10 @@ namespace Users.DAL
                 w.Write(age);
             }
         }
-        public void DeleteUser()
-        {
+        //public void DelUser()
+        //{
 
-        }
+        //}
         public bool AddUser(User user)
         {
             if (Users.Any(n => n.Id == user.Id))

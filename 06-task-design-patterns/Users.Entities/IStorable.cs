@@ -10,7 +10,7 @@ namespace Users.Entities
     {
         bool AddUser(User user);
         ICollection<User> GetAllUsers();
-
+        //bool DelUser(User user);
         //ICollection<Awards> 
     }
 }

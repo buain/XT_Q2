@@ -9,21 +9,25 @@ using Users.DAL;
 
 namespace Users.BLL
 {
-    public static class UsersManager
+    public class UsersManager
     {
-        public static IStorable FileStorageUsers => Dependensies.FileStorage;
+        public IStorable FileStorageUsers => Dependensies.FileStorage;
         
-        public static void GetAllUsers()
+        public IEnumerable<User> GetAllUsers()
         {
 
         }
-        public static void AddUser(Guid id, string name, DateTime birthday, int age) // метод кладет данные в базу
+        public void AddUser(Guid id, string name, DateTime birthday, int age) // метод кладет данные в базу
         {
             FileStorageUsers.AddUser(new User(id, name, birthday, age));
         }
-        public static void AddUser(User user)
+        public void AddUser(User user)
         {
             FileStorageUsers.AddUser(user);
         }
+        //public static void DelUser(Guid id)
+        //{
+        //    FileStorageUsers.DelUser(id);
+        //}
     }
 }

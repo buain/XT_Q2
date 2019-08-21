@@ -58,6 +58,10 @@ namespace Users.Entities
         private int age;
         public int Age
         {
+            get
+            {
+                return age;
+            }
             set
             {
                 //Age = age;
