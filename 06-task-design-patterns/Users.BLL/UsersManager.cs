@@ -11,23 +11,44 @@ namespace Users.BLL
 {
     public class UsersManager
     {
-        public IStorable FileStorageUsers => Dependensies.FileStorage;
-        
-        public IEnumerable<User> GetAllUsers()
-        {
+        public IStorable storageusers; //=> Dependensies.FileStorage;
 
-        }
-        public void AddUser(Guid id, string name, DateTime birthday, int age) // метод кладет данные в базу
+        //public IEnumerable<User> GetAllUsers()
+        //{
+
+        //}
+        public bool AddUser(string name, DateTime birthday) // метод кладет данные в DAL
         {
-            FileStorageUsers.AddUser(new User(id, name, birthday, age));
+            var user = new User(name, birthday);
+            if (this.storageusers.AddUser(user))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+            //FileStorageUsers.AddUser(new User(id, name, birthday, age));
         }
-        public void AddUser(User user)
+        public bool AddUser(User user)
         {
-            FileStorageUsers.AddUser(user);
+            if (this.storageusers.AddUser(user))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
+        //public void AddUser(User user)
+        //{
+        //    FileStorageUsers.AddUser(user);
+        //}
         //public static void DelUser(Guid id)
         //{
         //    FileStorageUsers.DelUser(id);
         //}
+
     }
 }

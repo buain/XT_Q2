@@ -68,14 +68,14 @@ namespace Users.Entities
                 age = DateTime.Today.Year - birthday.Year;
             }
         }
-        //public User(string name, DateTime birthday)
-        //{
-        //    this.Id = Guid.NewGuid();
-        //    this.Name = name;
-        //    this.BirthDay = birthday;
-        //}
-        public User(Guid Id, string name, DateTime birthday, int age)
-            //this(name, birthday)
+        public User(string name, DateTime birthday)
+        {
+            this.Id = Guid.NewGuid();
+            this.Name = name;
+            this.BirthDay = birthday;
+        }
+        public User(string name, DateTime birthday, IEnumerable<Guid> id):
+            this(name, birthday)
         {
             this.Id = Guid.NewGuid();
             this.Name = name;

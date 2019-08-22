@@ -10,7 +10,9 @@ namespace Users.PL
 {
     class Program
     {
-        public static UsersManager UsersManager { get; } = new UsersManager();
+        public static UsersManager usersmanager;// { get; } = new UsersManager();
+        public static Dictionary<int, Guid> UserIds = new Dictionary<int, Guid>(10);
+
         static void Main(string[] args)
         {
             SelectOptionByUser();
@@ -37,15 +39,15 @@ namespace Users.PL
                         //TODO DAL - add user
                         //UserList.AddUser()....
 
-                        Console.WriteLine("Input user name:");
-                        var name = Console.ReadLine();
-                        Guid Id = default(Guid);
-                        Console.WriteLine("Input user BirthDay in format dd.MM.yyyy:");
-                        DateTime birthday = DateTime.Parse(Console.ReadLine());
-                        int age = DateTime.Today.Year - birthday.Year;
+                        //Console.WriteLine("Input user name:");
+                        //var name = Console.ReadLine();
+                        //Guid Id = default(Guid);
+                        //Console.WriteLine("Input user BirthDay in format dd.MM.yyyy:");
+                        //DateTime birthday = DateTime.Parse(Console.ReadLine());
+                        //int age = DateTime.Today.Year - birthday.Year;
                         //UsersManager manager = new UsersManager();
-                        UsersManager.AddUser(Id, name, birthday, age);
-
+                        //UsersManager.AddUser(Id, name, birthday, age);
+                        CreateUser();
                         SelectOptionByUser();
                         break;
                     case 2:
@@ -72,6 +74,29 @@ namespace Users.PL
             }
         }
 
+        public static void CountUserIds()
+        {
+            int i = 1;
+            UserIds.Clear();
+            List<User> users = usersmanager.GetAllUsers().ToList<User>();
+            foreach(var items in users)
+            {
+                UserIds.Add(i, items.Id);
+                i++;
+            }
+        }
+
+        internal static void CreateUser()
+        {
+            Console.WriteLine("Input user name:");
+            var name = Console.ReadLine();
+
+            Console.WriteLine("Input user BirthDay in format dd.MM.yyyy:");
+            DateTime birthday = DateTime.Parse(Console.ReadLine());
+            //int age = DateTime.Today.Year - birthday.Year;
+            usersmanager.AddUser(name, birthday);
+        }
+
         private static void ShowUsers(IEnumerable<User> users)
         {
             foreach(var item in users)
@@ -80,16 +105,7 @@ namespace Users.PL
             }
         }
 
-        //internal static void CreateUser()
-        //{
 
-        //    Console.WriteLine("Input user name:");
-        //    var name = Console.ReadLine();
-
-        //    Console.WriteLine("Input user BirthDay in format dd.MM.yyyy:");
-        //    DateTime birthday = DateTime.Parse(Console.ReadLine());
-        //    int age = DateTime.Today.Year - birthday.Year;
-
-        //}
+        
     }
 }
