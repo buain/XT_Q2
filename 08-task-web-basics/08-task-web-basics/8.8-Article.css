@@ -1,0 +1,21 @@
+﻿body {
+    background-color:black;
+    border: solid yellow;
+}
+div{
+    width: 700px;
+    height: 300px;
+    margin: 30px;
+    border-radius: 0 0 10px 10px;
+    position:absolute;
+    left: 100px;
+    border: 1px solid lavender;
+}
+p{
+    margin:30px;
+    background-color:white;
+}
+h1{
+    background-color:black;
+    color:orange;
+}

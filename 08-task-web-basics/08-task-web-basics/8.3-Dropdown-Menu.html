@@ -2,57 +2,82 @@
 <html>
 <head>
     <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0">
     <title>8.3-Dropdown-Menu</title>
     <style>
-        .menu-inner {display:none;} /* Hide nested lists */
-        .menu > li {float:left; margin-right:70px} /* Horizontal menu */
-        .menu > li > a {color:blue; padding:4px;} /* Main menu link style */
-        .menu {list-style-type:none;} /* Hide points of menu */
-        /* add position */
+        .menu-inner {
+            display: none;
+        }
+        /* Hide nested lists */
         .menu > li {
-            position:relative;
-            float:left;
-            margin-right:50px
+            float: left;
+            margin-right: 70px
         }
-         /* Hover style of the main menu: */
-        .menu > li:hover > a{ 
-            color:black; 
-            text-decoration:none; 
-            box-shadow: 0 0 8px 0; 
-            border-radius: 5px 5px 0 0;
-        }
-        /* Activate nested lists */
-        .menu > li:hover > .menu-inner {
-            display: block;
-            background-color: white;
-            position: absolute;
-            left: 0;
-            top: 22px;
+            /* Horizontal menu */
+            .menu > li > a {
+                color: blue;
+                padding: 4px;
+            }
+        /* Main menu link style */
+        .menu {
             list-style-type: none;
-            box-shadow: 0 0 8px 0;
-            width: 120px;
-            padding: 3px;
         }
-        /* Hide gray strip*/
-        .menu > li:hover > a::before{
-            content:'';
-            position: absolute;
-            bottom: -5px; left: 0;
-            width: 100%;
-            height: 7px;
-            background: white;
-            z-index: 5;
-            cursor: pointer;
-        }
+            /* Hide points of menu */
+            /* add position */
+            .menu > li {
+                position: relative;
+                float: left;
+                margin-right: 50px
+            }
+                /* Hover style of the main menu: */
+                .menu > li:hover > a {
+                    color: black;
+                    text-decoration: none;
+                    box-shadow: 0 0 8px 0;
+                    border-radius: 5px 5px 0 0;
+                }
+                /* Activate nested lists */
+                .menu > li:hover > .menu-inner {
+                    display: block;
+                    background-color: white;
+                    position: absolute;
+                    left: 0;
+                    top: 22px;
+                    list-style-type: none;
+                    box-shadow: 0 0 8px 0;
+                    width: 120px;
+                    padding: 3px;
+                }
+                /* Hide gray strip*/
+                .menu > li:hover > a::before {
+                    content: '';
+                    position: absolute;
+                    bottom: -5px;
+                    left: 0;
+                    width: 100%;
+                    height: 7px;
+                    background: white;
+                    z-index: 5;
+                    cursor: pointer;
+                }
         /* Inner menu style */
-        .menu-inner > li {padding: 4px 0;}
-        .menu-inner > li:hover {background-color: dodgerblue;}
-        .menu-inner > li > a {text-decoration:none;}
-        .menu-inner > li:hover > a {
-            text-decoration: none;
-            color: white;
-            padding: 2px;
+        .menu-inner > li {
+            padding: 4px 0;
         }
+
+            .menu-inner > li:hover {
+                background-color: dodgerblue;
+            }
+
+            .menu-inner > li > a {
+                text-decoration: none;
+            }
+
+            .menu-inner > li:hover > a {
+                text-decoration: none;
+                color: white;
+                padding: 2px;
+            }
     </style>
 </head>
 <body>
