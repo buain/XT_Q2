@@ -1,0 +1,27 @@
+﻿body {
+	background-color: black;
+}
+div {
+	width: 50px;
+	height: 113px;
+	background: repeating-linear-gradient(transparent, transparent 20px, black 20px, black 23px),
+        linear-gradient(gold, darkorange);
+    margin-right: 15px;
+    border-radius: 7px 7px 0 0;
+    display:inline-block;
+}
+div:nth-of-type(2) {
+    height: 44px;
+}
+div:nth-of-type(3) {
+    height: 182px;
+}
+div:nth-of-type(4){
+    height:228px;
+}
+div:nth-of-type(5){
+    height:113px;
+}
+div:last-of-type{
+    height: 67px;
+}
