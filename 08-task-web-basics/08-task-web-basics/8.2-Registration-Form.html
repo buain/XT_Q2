@@ -2,43 +2,26 @@
 <html>
 <head>
     <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0">
     <title>8.2-Registration-Form</title>
+    <link rel="stylesheet" href="8.2-Registration-Form.css">
 </head>
 <body>
-    <table>
-        <tr>
-            <td>
-                <p>Регистрация</p>
-                <p>E-mail</p>
-                <form method="post" autocomplete="off">
-                    <input type="email" name="E-mail" />
-                </form>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <p>Пароль</p>
-                <form method="post" autocomplete="off">
-                    <input type="password" name="пароль" />
-                </form>
-            </td>
-            <td>
-                <p>Еще раз</p>
-                <form>
-                    <input type="password" name="еще раз">
-                </form>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <br>
-                <form>
-                    <input type="submit" value="Отправить">
-                </form>
-            </td>
-        </tr>
-    </table>
-
-    
+    <form>
+        <header>Регистрация</header>
+        <div class="registration">
+            <label for="mail">E-mail</label><br>
+            <input type="email" name="E-mai" autocomplete="off">
+            <div class="password">
+                <label for="pass">Пароль</label>
+                <input type="password" name="пароль">
+            </div>
+            <div class="more">
+                <label for="more">Ещё раз</label>
+                <input type="password" name="еще раз" autocomplete="off"><br>
+            </div>
+            <input type="submit" value="Отправить">
+        </div>
+    </form>  
 </body>
 </html>

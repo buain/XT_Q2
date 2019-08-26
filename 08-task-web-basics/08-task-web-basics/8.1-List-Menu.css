@@ -1,22 +1,22 @@
 ﻿body {
 }
 div {
-    width:210px; 
-    border-color:black;
+    width: 210px;
+    border: 1px;
+    border-color: black;
     background-color: #F9E497;
     margin: 40px;
     border-style: outset;
     border-radius: 10px;
-    text-align: left
+    text-align: left;
+    box-shadow: 5px 5px 0 0 #880000;
 }
 li{
     list-style-type:none;
+    padding-bottom:10px;
 }
-ul{
-    margin-left:0;
-    padding-right:5px;
-    padding-left:12px;
-}
-text {
-    color: #B30A05;
+ul {
+    padding-right: 5px;
+    padding-left: 12px;
+    color: #880000;
 }
