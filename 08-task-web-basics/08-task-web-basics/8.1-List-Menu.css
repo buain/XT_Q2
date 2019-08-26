@@ -1,0 +1,22 @@
+﻿body {
+}
+div {
+    width:210px; 
+    border-color:black;
+    background-color: #F9E497;
+    margin: 40px;
+    border-style: outset;
+    border-radius: 10px;
+    text-align: left
+}
+li{
+    list-style-type:none;
+}
+ul{
+    margin-left:0;
+    padding-right:5px;
+    padding-left:12px;
+}
+text {
+    color: #B30A05;
+}

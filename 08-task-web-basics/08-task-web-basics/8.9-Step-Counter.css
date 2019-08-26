@@ -1,0 +1,33 @@
+﻿body {
+    margin:40px;
+}
+label{
+    position:relative
+}
+label::after{
+    top:-10px;
+    transform:skew(25deg)
+}
+label::before{
+    top:10px;
+    transform:skew(-25deg)
+}
+span {
+    background: linear-gradient(#D9D9D9, #C0C0C0, #D9D9D9);
+    padding: 10px 40px 10px 40px;
+    margin-left: -25px;
+}
+label:not(:last-child)::before,
+label:not(:last-child):after{
+    width:10px;
+    height:20px;
+    position:absolute;
+    z-index:99;
+    content:'';
+    background-color:white;
+    left: 112px
+}
+input:checked + span {
+    background: linear-gradient(#A1DD76, #64C51E, #A1DD76);
+    color:white
+}
