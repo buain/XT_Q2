@@ -1,21 +1,33 @@
 ﻿body {
     background-color:black;
-    border: solid yellow;
+    margin:50px;
 }
 div{
-    width: 700px;
-    height: 300px;
+    width: 400px;
     margin: 30px;
     border-radius: 0 0 10px 10px;
-    position:absolute;
-    left: 100px;
-    border: 1px solid lavender;
+    padding:0 10px;
+    border: 2px solid lavender;
+    background: linear-gradient(lavender, white)
 }
-p{
-    margin:30px;
-    background-color:white;
+h1 {
+    background-color: black;
+    color: orange;
+    position: relative;
+    display:inline-block;
+    margin: -2px 0 0 -12px;
+    padding: 0 10px;
+    line-height: 1.3em;
+    white-space:nowrap;
+    max-width:100%
 }
-h1{
-    background-color:black;
-    color:orange;
+h1::after {
+    padding: 0 10px;
+    background-color: white;
+    position: absolute;
+    right: -30px;
+    width: 0;
+    height: 0;
+    border-top: 1.3em solid black;
+    border-right: 30px solid transparent
 }
