@@ -12,17 +12,7 @@ namespace Users.DAL
     {
         private static List<User> Users { get; set; }
         string file_users = @"C:\Task6\users.txt";
-        //public void AddUser(Guid id, string name, DateTime birthday, int age) //Сделать запись в файл с помощью StreamWriter
-        //{
-            
-        //    using (StreamWriter w = new StreamWriter(@"C:\Task6\users.txt", true))
-        //    {
-        //        w.Write(id);
-        //        w.Write(name);
-        //        w.Write(birthday);
-        //        w.Write(age);
-        //    }
-        //}
+        
         
         public bool AddUser(User user)
         {
@@ -40,21 +30,62 @@ namespace Users.DAL
         {
             return string.Format($"{user.Id.ToString()}, {user.Name.ToString()}, {user.BirthDay.ToString()}");
         }
-        //public void DelUser()
-        //{
+        public bool DeleteUser(Guid Id)
+        {
+            try
+            {
+                if (!File.Exists(this.file_users))
+                {
+                    return false;
+                }
 
-        //}
-        //public bool AddUser(User user)
-        //{
-        //    if (Users.Any(n => n.Id == user.Id))
-        //        return false;
-        //    Users.Add(user);
-        //    return true;
-        //}
-        //public ICollection<User> GetAllUsers()
-        //{
-        //    return Users;
-        //}
+                var allusers = this.GetAllUsers()
+                    .Where(n => n.Id != Id)
+                    .Select(n => RecordUser(n));
+
+                File.WriteAllLines(this.file_users, allusers);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+        
+        public User GetUser(Guid idd)//////
+        {
+            return this.GetAllUsers().FirstOrDefault(n => n.Id==idd);
+        }
+        public IEnumerable<User> GetAllUsers()
+        {
+            if (!File.Exists(this.file_users))
+            {
+                Console.WriteLine("File not found");
+            }
+
+            string[] lines = File.ReadAllLines(this.file_users);
+
+            foreach(string line in lines)
+            {
+                var user = RecordLine(line);
+                if(user != null)
+                {
+                    yield return user;
+                }
+            }
+        }
+        private static User RecordLine(string line)
+        {
+            var userFields = line.Split('_');
+            if(userFields.Length != 3)
+            {
+                return null;
+            }
+            return new User(userFields[1], DateTime.Parse(userFields[2]))
+            {
+                Id = Guid.Parse(userFields[0]),
+            };
+        }
     }
     
 }

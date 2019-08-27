@@ -10,7 +10,7 @@ namespace Users.Entities
     {
         // There is characters of User (Id, Name, BirthDay, Age)
         
-        public Guid Id { get; private set; }
+        public Guid Id { get; set; }
 
         private string name;
         public string Name

@@ -34,30 +34,12 @@ namespace Users.PL
             {
                 switch (SelectedOption)
                 {
-                    case 1:
-                        //TODO BLL - prepear to add user
-                        //TODO DAL - add user
-                        //UserList.AddUser()....
-
-                        //Console.WriteLine("Input user name:");
-                        //var name = Console.ReadLine();
-                        //Guid Id = default(Guid);
-                        //Console.WriteLine("Input user BirthDay in format dd.MM.yyyy:");
-                        //DateTime birthday = DateTime.Parse(Console.ReadLine());
-                        //int age = DateTime.Today.Year - birthday.Year;
-                        //UsersManager manager = new UsersManager();
-                        //UsersManager.AddUser(Id, name, birthday, age);
+                    case 1: 
                         CreateUser();
                         SelectOptionByUser();
                         break;
-                    case 2:
-                        //TODO BLL - prepear to delete user
-                        //TODO DAL - delete user
-                        //UserList.DeleteUser()....
-                        Console.WriteLine("Input user name to delete:");
-                        var name_delete = Console.ReadLine();
-                        Guid del_Id = Guid.Parse(name_delete);
-                        //UsersManager.DelUser(del_Id);
+                    case 2:      
+                        DeleteUser();
                         SelectOptionByUser();
                         break;
                     case 3:
@@ -105,7 +87,49 @@ namespace Users.PL
             }
         }
 
+        internal static void GetAllUsers()
+        {
+            List<User> users = usersmanager.GetAllUsers().ToList<User>();
+            if(users.Count == 0)
+            {
+                Console.WriteLine("Users list is empty");
+            }
+            else
+            {
+                Console.WriteLine("Data of Users:");//////
+                CountUserIds();
+                foreach(var items in UserIds)
+                {
+                    User user = users.Single(n => n.Id == UserIds[items.Key]);
+                    Console.WriteLine(
+                        items.Key.ToString(),
+                        user.Name, 
+                        user.BirthDay.ToString("dd.MM.yyyy"), 
+                        user.Age.ToString());////
+                }
+            }
+        }
 
+        internal static void DeleteUser()
+        {
+            Console.WriteLine("Input user Id to delete");
+            string input = Console.ReadLine();
+
+            if (!UserIds.ContainsKey(int.Parse(input)))
+            {
+                Console.WriteLine("Wrong input!");
+            }
+
+            Guid deleteGuid = UserIds[int.Parse(input)];
+            try
+            {
+                User deleteUser = usersmanager.GetUserId(deleteGuid);
+                if (usersmanager.DeleteUser(deleteUser))
+                {
+
+                }
+            }
+        }
         
     }
 }

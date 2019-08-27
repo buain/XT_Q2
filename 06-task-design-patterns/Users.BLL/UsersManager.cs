@@ -13,11 +13,8 @@ namespace Users.BLL
     {
         public IStorable storageusers; //=> Dependensies.FileStorage;
 
-        //public IEnumerable<User> GetAllUsers()
-        //{
-
-        //}
-        public bool AddUser(string name, DateTime birthday) // метод кладет данные в DAL
+        
+        public bool AddUser(string name, DateTime birthday) // 
         {
             var user = new User(name, birthday);
             if (this.storageusers.AddUser(user))
@@ -28,7 +25,7 @@ namespace Users.BLL
             {
                 return false;
             }
-            //FileStorageUsers.AddUser(new User(id, name, birthday, age));
+            
         }
         public bool AddUser(User user)
         {
@@ -41,14 +38,25 @@ namespace Users.BLL
                 return false;
             }
         }
-        //public void AddUser(User user)
-        //{
-        //    FileStorageUsers.AddUser(user);
-        //}
-        //public static void DelUser(Guid id)
-        //{
-        //    FileStorageUsers.DelUser(id);
-        //}
-
+        
+        public User GetUserId(Guid Id)
+        {
+            return this.storageusers.GetUser(Id);
+        }
+        public User[] GetAllUsers()
+        {
+            return this.storageusers.GetAllUsers().ToArray();
+        }
+        public bool DeleteUser(User user)
+        {
+            if (this.storageusers.DeleteUser(user.Id))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
 }

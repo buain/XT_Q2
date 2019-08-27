@@ -10,8 +10,10 @@ namespace Users.Entities
     public interface IStorable
     {
         bool AddUser(User user);
-        //IEnumerable<User> GetAllUsers();
-        //bool DelUser(User user);
-        //ICollection<Awards> 
+        bool DeleteUser(Guid Id);
+        User GetUser(Guid Id);
+        IEnumerable<User> GetAllUsers();
+        
+         
     }
 }
