@@ -1,7 +1,7 @@
-var input = prompt("Введите арифметическое выражение:", "Например, 3.5 +4*10-5.3 /5 =");
-
-MathCalculate = function(){
+/*var input = prompt("Введите арифметическое выражение:", "Например, 3.5 +4*10-5.3 /5 =");*/
+var input = "3.5 +4*10-5.3 /5 =";
 	
+var f = function(x){	
 	var result = 0,
 		strArr = [],
 		MathAction = /\-?\d+(\.\d+)?|[\+,\-,\*,\/,\=]{1}/ig;
@@ -21,12 +21,13 @@ MathCalculate = function(){
 				break;
 			case "/": result /= strArr[i+1]*1;
 				break;
-			case "=";
+			case "=":
 				break;
-			default: continue;
-				break;
+			/*default: continue; break;	*/	
 		}
 	}
-
-	document.writeln(result);
+	return result;
 }
+document.writeln(f(input));
+
+
