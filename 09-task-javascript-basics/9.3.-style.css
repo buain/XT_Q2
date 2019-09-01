@@ -1,0 +1,25 @@
+.menu div{
+	display: inline-block;
+}
+.h2{
+	padding-left: 30px;
+}
+.ListMenu{
+	width: 250px;
+	height: 180px;
+	border: 1px solid #808080;
+	overflow: scroll;
+	overflow-x: hidden;
+	cursor: pointer;
+}
+.ListMenu p{
+	padding: 5px;
+	margin: 5px;
+}
+.Buttons{
+	width: 45px;
+	height: 25px;
+	bottom: 55px;
+	text-align: center;
+	position: relative;
+}
