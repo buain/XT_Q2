@@ -1,11 +1,16 @@
+body {
+    margin: 0;
+    padding: 0;
+}
 .menu div{
 	display: inline-block;
 }
-.h2{
+h2{
+	margin: 0;
 	padding-left: 30px;
 }
 .ListMenu{
-	width: 250px;
+	width: 130px;
 	height: 180px;
 	border: 1px solid #808080;
 	overflow: scroll;
