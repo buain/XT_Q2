@@ -6,10 +6,17 @@
     <script src="9.4.-script.js"></script>
 <title>Page2</title>
 </head>
-
+<script>var _time2 = 7;</script>
 <body>
-    <button id="reset" onclick="Stop()">Отсчет сначала</button>
-    <button id="pause" onclick="Pause()">Стоп</button>
+	<form action="Page1.html">
+		<button id="back">Назад</button>
+	</form>
+    <button id="reset" onclick="Stop();Progress('Page3.html',_time2);">Отсчет сначала</button>
+    <button id="pause" onclick="Pause('Page3.html')">Стоп</button>
+	<p>Время:</p>
+	<p id="LeftTime"></p>
+	<p>сек.</p>
+	<script>Progress("Page3.html",_time2);</script>
     <img src="Images/Above&Beyond.jpg" />
 </body>
 </html>
