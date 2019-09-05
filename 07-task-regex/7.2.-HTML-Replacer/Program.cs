@@ -12,8 +12,8 @@ namespace _7._2._HTML_Replacer
         static void Main(string[] args)
         {
             Console.WriteLine("Введите текст с тегами HTML\n");
-            string input = "<b>Это</b>текст<i>с</i><font color=\"red\">HTML</font>кодами";
-            //string input = Console.ReadLine();
+            //string input = "<b>Это</b>текст<i>с</i><font color=\"red\">HTML</font>кодами";
+            string input = Console.ReadLine();
 
             Console.WriteLine("Исходный текст: {0}\n", input);
 
