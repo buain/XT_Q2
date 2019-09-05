@@ -45,3 +45,7 @@ function Stop(){
 	clearTimeout(TimeOutID);
     ViewTime = undefined;
 }
+
+function Exit(){
+    window.top.close();
+}
