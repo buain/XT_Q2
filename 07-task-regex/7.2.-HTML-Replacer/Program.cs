@@ -22,20 +22,20 @@ namespace _7._2._HTML_Replacer
             string no = "";
             Regex regex_quotes = new Regex(pattern_quotes);
             string without_quotes = regex_quotes.Replace(input, no);
-            Console.WriteLine("Результат без кавычек: {0}\n", without_quotes);
+            //Console.WriteLine("Результат без кавычек: {0}\n", without_quotes);
 
             //delete =:
             string pattern_equally = @"[=]";
             Regex regex_equally = new Regex(pattern_equally);
             string without_equally = regex_equally.Replace(without_quotes, no);
-            Console.WriteLine("Результат без знака равно: {0}\n", without_equally);
+            //Console.WriteLine("Результат без знака равно: {0}\n", without_equally);
 
             //Replace backspase:
             string pattern_backspace = @"\s+";
             string item = "_";
             Regex regex_backspace = new Regex(pattern_backspace);
             string without_backspace = regex_backspace.Replace(without_equally, no);
-            Console.WriteLine("Результат без пробела: {0}\n", without_backspace);
+            //Console.WriteLine("Результат без пробела: {0}\n", without_backspace);
 
             //Replace tags to _:
             string pattern1 = @"(<\W*\w*>\W*)(<\W*\w*>\W*)";
@@ -47,7 +47,7 @@ namespace _7._2._HTML_Replacer
             //string pattern = @"(<\W*.+?>\W*)";
             Regex regex = new Regex(pattern);
             string result = regex.Replace(result1, item);
-         
+
             Console.WriteLine("Результат замены: {0}\n", result);
             Console.ReadKey();//Delay
         }

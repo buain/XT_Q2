@@ -11,20 +11,20 @@ namespace _7._3._EMAIL__Finder
     {
         static void Main(string[] args)
         {
-            string pattern_email = @"^(?("")(""[^""]+?""@)|(([0-9a-z]((\.(?!\.))|[-!#\$%&'\*\+/=\?\^`\{\}\|~\w])*)(?<=[0-9a-z])@))" +
-                @"(?(\[)(\[(\d{1,3}\.){3}\d{1,3}\])|(([0-9a-z][-\w]*[0-9a-z]*\.)+[a-z0-9]{2,17}))$";
+            string pattern_email = @"\b[^_*.+][-\w.]+@([a-z0-9\.-]+)\.([a-z\.]{2,6})\b";
 
             Console.WriteLine("Введите строку, содержащую валидный адрес электронной почты E-mail: ");
-            string input = "Иван: ivan@mail.ru, Петр: p_ivanov@mail.rol.ru";
-            //string input = Console.ReadLine();
+            //string input = "Иван: ivan@mail.ru, Петр: p_ivanov@mail.rol.ru";
+            string input = Console.ReadLine();
 
-            Regex regex = new Regex(pattern_email);
+            Regex regex = new Regex(pattern_email, RegexOptions.IgnoreCase);
+            MatchCollection emails = regex.Matches(input);
 
-            //
-            Match email1 = Regex.Match(input, pattern_email);
-            Match email2 = email1.NextMatch();
-            Console.WriteLine($"Найденные адреса электронной почты: {email1} , {email2}");
-
+            Console.WriteLine($"Найденные адреса электронной почты:");
+            foreach (Match email in emails)
+            {
+                Console.WriteLine(email.Value);
+            }
             Console.ReadKey();//Delay
         }
     }
