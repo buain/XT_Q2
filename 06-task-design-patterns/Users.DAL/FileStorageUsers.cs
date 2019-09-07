@@ -11,9 +11,13 @@ namespace Users.DAL
     public class FileStorageUsers : IStorable
     {
         private static List<User> Users { get; set; }
-        string file_users = @"C:\Task6\users.txt";
+        private const string FileUsers = @"C:\Task6\users.txt";
+        private string file_users;
         
-        
+        public FileStorageUsers()
+        {
+            this.file_users = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, FileUsers);
+        }
         public bool AddUser(User user)
         {
             try
@@ -52,9 +56,9 @@ namespace Users.DAL
             }
         }
         
-        public User GetUser(Guid idd)//////
+        public User GetUser(Guid id)
         {
-            return this.GetAllUsers().FirstOrDefault(n => n.Id==idd);
+            return this.GetAllUsers().FirstOrDefault(n => n.Id==id);
         }
         public IEnumerable<User> GetAllUsers()
         {

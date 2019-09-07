@@ -13,7 +13,7 @@ namespace Users.Entities
         bool DeleteUser(Guid Id);
         User GetUser(Guid Id);
         IEnumerable<User> GetAllUsers();
-        
+         
          
     }
 }

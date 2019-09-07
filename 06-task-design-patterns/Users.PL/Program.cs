@@ -10,8 +10,9 @@ namespace Users.PL
 {
     class Program
     {
-        public static UsersManager usersmanager;// { get; } = new UsersManager();
+        public static UsersManager usersmanager;
         public static Dictionary<int, Guid> UserIds = new Dictionary<int, Guid>(10);
+        public static string UsersString = "{0,-3} {1,-20} {2,-20} {3,-5}";
 
         static void Main(string[] args)
         {
@@ -43,11 +44,7 @@ namespace Users.PL
                         SelectOptionByUser();
                         break;
                     case 3:
-                        //TODO BLL - get all users 
-                        //TODO PL - show all users
-                        //ShowUsers(UserList.GetAllUsers())
-                        IEnumerable<User> users = UsersManager.GetAllUsers();
-                        ShowUsers(users);
+                        GetAllUsers();
                         SelectOptionByUser();
                         break;
                     case 4:
@@ -72,19 +69,43 @@ namespace Users.PL
         {
             Console.WriteLine("Input user name:");
             var name = Console.ReadLine();
+            if (string.IsNullOrWhiteSpace(name))
+            {
+                Console.WriteLine("The Name cannot be empty");
+            }
 
             Console.WriteLine("Input user BirthDay in format dd.MM.yyyy:");
-            DateTime birthday = DateTime.Parse(Console.ReadLine());
-            //int age = DateTime.Today.Year - birthday.Year;
-            usersmanager.AddUser(name, birthday);
-        }
+            DateTime birthday; // = DateTime.Parse(Console.ReadLine());
+            string[] input_date;
 
-        private static void ShowUsers(IEnumerable<User> users)
-        {
-            foreach(var item in users)
+            try
             {
-                Console.WriteLine($"{item.Id}, {item.Name}, {item.BirthDay}, {item.Age}");
+                input_date = Console.ReadLine().Split(new[] { '.' }, 3);
+                birthday = new DateTime(int.Parse(input_date[2]), int.Parse(input_date[1]), int.Parse(input_date[0]));
             }
+            catch
+            {
+                Console.WriteLine("Wrong input date of birth.");
+                return;
+            }
+
+            try
+            {
+                if(usersmanager.AddUser(name, birthday))
+                {
+                    Console.WriteLine("User created succesfully");
+                }
+                else
+                {
+                    Console.WriteLine("User do not created");
+                }
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine("User do not created");
+                Console.WriteLine(e);
+            }
+            
         }
 
         internal static void GetAllUsers()
@@ -96,16 +117,17 @@ namespace Users.PL
             }
             else
             {
-                Console.WriteLine("Data of Users:");//////
+                Console.WriteLine(UsersString, "Id", "Name", "BirthDay", "Age");
                 CountUserIds();
                 foreach(var items in UserIds)
                 {
                     User user = users.Single(n => n.Id == UserIds[items.Key]);
                     Console.WriteLine(
+                        UsersString,
                         items.Key.ToString(),
                         user.Name, 
                         user.BirthDay.ToString("dd.MM.yyyy"), 
-                        user.Age.ToString());////
+                        user.Age.ToString());
                 }
             }
         }
@@ -126,8 +148,17 @@ namespace Users.PL
                 User deleteUser = usersmanager.GetUserId(deleteGuid);
                 if (usersmanager.DeleteUser(deleteUser))
                 {
-
+                    Console.WriteLine($"User with Id {input} deleted");
                 }
+                else
+                {
+                    Console.WriteLine("Delete unsuccessfully");
+                }
+            }
+            catch
+            {
+                Console.WriteLine("Wrong Id of user");
+                return;
             }
         }
         

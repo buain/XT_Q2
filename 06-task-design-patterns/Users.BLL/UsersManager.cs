@@ -11,9 +11,12 @@ namespace Users.BLL
 {
     public class UsersManager
     {
-        public IStorable storageusers; //=> Dependensies.FileStorage;
-
+        private IStorable storageusers; //=> Dependensies.FileStorage;
         
+        public UsersManager()
+        {
+            storageusers = new FileStorageUsers();
+        }
         public bool AddUser(string name, DateTime birthday) // 
         {
             var user = new User(name, birthday);

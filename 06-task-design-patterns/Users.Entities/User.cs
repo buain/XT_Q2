@@ -54,7 +54,6 @@ namespace Users.Entities
                 }
             }
         }
-        //public int age = DateTime.Today.Year - birthday.Year;
         private int age;
         public int Age
         {
@@ -64,7 +63,6 @@ namespace Users.Entities
             }
             set
             {
-                //Age = age;
                 age = DateTime.Today.Year - birthday.Year;
             }
         }
@@ -74,7 +72,7 @@ namespace Users.Entities
             this.Name = name;
             this.BirthDay = birthday;
         }
-        public User(string name, DateTime birthday, IEnumerable<Guid> id):
+        public User(string name, DateTime birthday, IEnumerable<Guid> _list):
             this(name, birthday)
         {
             this.Id = Guid.NewGuid();
