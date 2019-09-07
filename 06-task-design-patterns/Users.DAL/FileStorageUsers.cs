@@ -10,8 +10,8 @@ namespace Users.DAL
 {
     public class FileStorageUsers : IStorable
     {
-        private static List<User> Users { get; set; }
-        private const string FileUsers = @"C:\Task6\users.txt";
+        //private static List<User> Users { get; set; }
+        private const string FileUsers = @"D:\Task6\users.txt";
         private string file_users;
         
         public FileStorageUsers()

@@ -14,8 +14,13 @@ namespace Users.PL
         public static Dictionary<int, Guid> UserIds = new Dictionary<int, Guid>(10);
         public static string UsersString = "{0,-3} {1,-20} {2,-20} {3,-5}";
 
+        static Program()
+        {
+            usersmanager = new UsersManager();
+        }
         static void Main(string[] args)
         {
+             
             SelectOptionByUser();
             Console.ReadKey();
         }
@@ -93,7 +98,7 @@ namespace Users.PL
             {
                 if(usersmanager.AddUser(name, birthday))
                 {
-                    Console.WriteLine("User created succesfully");
+                    Console.WriteLine("User created successfully");
                 }
                 else
                 {

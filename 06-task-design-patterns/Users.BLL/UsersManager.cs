@@ -15,7 +15,7 @@ namespace Users.BLL
         
         public UsersManager()
         {
-            storageusers = new FileStorageUsers();
+            this.storageusers = new DAL.FileStorageUsers();
         }
         public bool AddUser(string name, DateTime birthday) // 
         {

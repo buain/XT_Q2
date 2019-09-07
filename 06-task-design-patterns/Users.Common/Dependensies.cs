@@ -10,6 +10,6 @@ namespace Users.Common
 {
     public static class Dependensies
     {
-        public static IStorable FileStorage { get; } = new FileStorageUsers();
+        //public static IStorable FileStorage { get; } = new FileStorageUsers();
     }
 }
