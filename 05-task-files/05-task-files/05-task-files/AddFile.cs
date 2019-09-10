@@ -47,9 +47,7 @@ namespace _05_task_files
             string text = null;
             using (FileStream fstream = new FileStream(path, FileMode.Create))
             {
-                // string to bytes
                 byte[] array = Encoding.Default.GetBytes(text + Environment.NewLine);
-                // write array of bytes into file
                 fstream.Write(array, 0, array.Length);
                 Console.WriteLine($"File: \"{path}\" is cleared");
             }
