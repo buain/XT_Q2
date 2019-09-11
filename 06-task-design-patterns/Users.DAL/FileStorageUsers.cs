@@ -8,7 +8,7 @@ using System.IO;
 
 namespace Users.DAL
 {
-    public class FileStorageUsers : IStorable
+    public class FileStorageUsers : IUsers
     {
         //private static List<User> Users { get; set; }
         private const string FileUsers = @"D:\Task6\users.txt";

@@ -12,7 +12,9 @@ namespace Users.PL
     {
         public static UsersManager usersmanager;
         public static Dictionary<int, Guid> UserIds = new Dictionary<int, Guid>(10);
+        public static Dictionary<int, Guid> AwardsIds = new Dictionary<int, Guid>(10);
         public static string UsersString = "{0,-3} {1,-20} {2,-20} {3,-5}";
+        public static string AwardsString = "{0,-3} {1,-20}";
 
         static Program()
         {
@@ -30,7 +32,11 @@ namespace Users.PL
             Console.WriteLine("1.Create.");
             Console.WriteLine("2.Delete.");
             Console.WriteLine("3.View list of users");
-            Console.WriteLine("4.Exit.");
+            Console.WriteLine("4.Add type of award");
+            Console.WriteLine("5.Add award to user");
+            Console.WriteLine("6.View types of awards");
+            Console.WriteLine("7.View awards of user");
+            Console.WriteLine("8.Exit.");
 
             var input = Console.ReadLine();
 
@@ -53,6 +59,22 @@ namespace Users.PL
                         SelectOptionByUser();
                         break;
                     case 4:
+                        CreateAward();
+                        SelectOptionByUser();
+                        break;
+                    case 5:
+                        AddAwardToUser();
+                        SelectOptionByUser();
+                        break;
+                    case 6:
+                        GetAllAwards();
+                        SelectOptionByUser();
+                        break;
+                    case 7:
+                        GetUserAwards()
+                        SelectOptionByUser();
+                        break;
+                    case 8:
                         return;
                 }
             }
@@ -66,6 +88,18 @@ namespace Users.PL
             foreach(var items in users)
             {
                 UserIds.Add(i, items.Id);
+                i++;
+            }
+        }
+
+        public static void CountAwardIds()
+        {
+            int i = 1;
+            AwardIds.Clear();
+            List<User> awards = usersmanager.GetAllAwards().ToList<Award>();
+            foreach (var items in awards)
+            {
+                AwardIds.Add(i, items.Id);
                 i++;
             }
         }
