@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Users.Entities
 {
-    class Award
+    public class Award
     {
         public Guid Id { get; set; }
         private string title;

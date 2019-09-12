@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace Users.Entities
 {
-    class IAwards
+    public interface IAwards
     {
+        bool AddAward(Award award);
+        bool AddAwardToUser(Guid user_id, Guid award_id);
+        Award GetAward(Guid Id);
     }
 }

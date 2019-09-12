@@ -12,7 +12,7 @@ namespace Users.PL
     {
         public static UsersManager usersmanager;
         public static Dictionary<int, Guid> UserIds = new Dictionary<int, Guid>(10);
-        public static Dictionary<int, Guid> AwardsIds = new Dictionary<int, Guid>(10);
+        public static Dictionary<int, Guid> AwardIds = new Dictionary<int, Guid>(10);
         public static string UsersString = "{0,-3} {1,-20} {2,-20} {3,-5}";
         public static string AwardsString = "{0,-3} {1,-20}";
 
@@ -71,7 +71,7 @@ namespace Users.PL
                         SelectOptionByUser();
                         break;
                     case 7:
-                        GetUserAwards()
+                        GetUserAwards();
                         SelectOptionByUser();
                         break;
                     case 8:
@@ -201,5 +201,79 @@ namespace Users.PL
             }
         }
         
+        internal static void CreateAward()
+        {
+            Console.WriteLine("Input type of award:");
+            var title = Console.ReadLine();
+
+            try
+            {
+                if (usersmanager.AddAward(title))
+                {
+                    Console.WriteLine("Award created successfully");
+                }
+                else
+                {
+                    Console.WriteLine("Award do not created");
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Award do not created");
+                Console.WriteLine(e.Message);
+            }
+        }
+
+        internal static void AddAwardToUser()
+        {
+            Console.WriteLine("Input user Id:");
+            string input_user = Console.ReadLine();
+
+            if (!UserIds.ContainsKey(int.Parse(input_user)))
+            {
+                Console.WriteLine("Wrong user Id!");
+                return;
+            }
+
+            Guid userId = UserIds[int.Parse(input_user)];
+
+            Console.WriteLine("Input award Id:");
+            string input_award = Console.ReadLine();
+            if (!AwardIds.ContainsKey(int.Parse(input_award)))
+            {
+                Console.WriteLine("Wrong award Id!");
+                return;
+            }
+
+            Guid awardId = AwardIds[int.Parse(input_award)];
+
+            try
+            {
+                if(usersmanager.AddAwardToUser(userId, awardId))
+                {
+                    Console.WriteLine("Award added successfully");
+                }
+                else
+                {
+                    Console.WriteLine("Award do not added");
+                }
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine("Award do not added");
+                Console.WriteLine(e.Message);
+                return;
+            }
+        }
+
+        internal static void GetAllAwards()
+        {
+
+        }
+
+        internal static void GetUserAwards()
+        {
+
+        }
     }
 }

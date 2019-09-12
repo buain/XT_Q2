@@ -11,11 +11,13 @@ namespace Users.BLL
 {
     public class UsersManager
     {
-        private IStorable storageusers; //=> Dependensies.FileStorage;
+        private IUsers storageusers; //=> Dependensies.FileStorage;
+        private IAwards storageawards;
         
         public UsersManager()
         {
-            this.storageusers = new DAL.FileStorageUsers();
+            storageusers = new FileStorageUsers();
+            storageawards = new FileStorageAwards();
         }
         public bool AddUser(string name, DateTime birthday) // 
         {
@@ -53,6 +55,49 @@ namespace Users.BLL
         public bool DeleteUser(User user)
         {
             if (this.storageusers.DeleteUser(user.Id))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        public bool AddAward(string title)
+        {
+            var award = new Award(title);
+            if (storageawards.AddAward(award))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        public bool AddAward(Award award)
+        {
+            if (this.storageawards.AddAward(award))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public bool AddAwardToUser(Guid userId, Guid awardId)
+        {
+            if(storageusers.GetUser(userId) == null)
+            {
+                throw new ArgumentException("No user with such Id");
+            }
+            if (storageawards.GetAward(awardId) == null)
+            {
+                throw new ArgumentException("No award with such Id");
+            }
+            if (storageawards.AddAwardToUser(userId, awardId))
             {
                 return true;
             }
