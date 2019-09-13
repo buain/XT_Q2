@@ -106,5 +106,15 @@ namespace Users.BLL
                 return false;
             }
         }
+
+        public Award[] GetAllAwards()
+        {
+            return storageawards.GetAllAwards().ToArray();
+        }
+
+        public Award[] GetUserAwards(User user)
+        {
+            return storageawards.GetUserAwards(user).ToArray();
+        }
     }
 }
