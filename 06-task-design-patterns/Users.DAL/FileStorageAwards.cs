@@ -73,5 +73,51 @@ namespace Users.DAL
                 Id = Guid.Parse(awardField[0]),
             };
         }
+
+        public bool AddAwardToUser(Guid userID, Guid awardID)
+        {
+            Guid newID = Guid.NewGuid();
+
+            try
+            {
+                if (!File.Exists(this.file_awards_users))
+                {
+                    return false;
+                }
+
+                File.AppendAllLines(this.file_awards_users, new[] { CreateLineForUsersAward(userID, awardID) });
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        private static string CreateLineForUsersAward(Guid userId, Guid awardId)
+        {
+            return string.Format($"{userId.ToString()}_{awardId.ToString()}");
+        }
+
+        public IEnumerable<Award> GetUserAwards(User user)
+        {
+            if (!File.Exists(file_awards_users))
+            {
+                throw new FileNotFoundException("File not found");
+            }
+
+            string[] lines = File.ReadAllLines(file_awards_users);
+            foreach (string line in lines)
+            {
+                var usersAward = line.Split('_');
+                Guid userId = Guid.Parse(usersAward[1]);
+
+                if (userId == user.Id)
+                {
+                    Guid awardId = Guid.Parse(usersAward[2]);
+                    yield return this.GetAward(awardId);
+                }
+            }
+        }
     }
 }

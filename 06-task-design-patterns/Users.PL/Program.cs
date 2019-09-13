@@ -14,6 +14,7 @@ namespace Users.PL
         public static Dictionary<int, Guid> UserIds = new Dictionary<int, Guid>(10);
         public static Dictionary<int, Guid> AwardIds = new Dictionary<int, Guid>(10);
         public static string UsersString = "{0,-3} {1,-20} {2,-20} {3,-5}";
+        public static string UsersStringShort = "{0,-3} {1,-10}";
         public static string AwardsString = "{0,-3} {1,-20}";
 
         static Program()
@@ -84,7 +85,7 @@ namespace Users.PL
         {
             int i = 1;
             UserIds.Clear();
-            List<User> users = usersmanager.GetAllUsers().ToList<User>();
+            List<User> users = usersmanager.GetAllUsers().ToList();
             foreach(var items in users)
             {
                 UserIds.Add(i, items.Id);
@@ -96,7 +97,7 @@ namespace Users.PL
         {
             int i = 1;
             AwardIds.Clear();
-            List<User> awards = usersmanager.GetAllAwards().ToList<Award>();
+            List<Award> awards = usersmanager.GetAllAwards().ToList();
             foreach (var items in awards)
             {
                 AwardIds.Add(i, items.Id);
@@ -268,12 +269,64 @@ namespace Users.PL
 
         internal static void GetAllAwards()
         {
-
+            List<Award> awardInfo = usersmanager.GetAllAwards().ToList<Award>();
+            if(awardInfo.Count == 0)
+            {
+                Console.WriteLine("No awards at all");
+            }
+            else
+            {
+                CountAwardIds();
+                Console.WriteLine(AwardsString, "Id", "Award Type");
+                foreach(var item in AwardIds)
+                {
+                    Award award = awardInfo.Single(n => n.Id == AwardIds[item.Key]);
+                    Console.WriteLine(AwardsString, item.Key.ToString(), award.Title.ToString());
+                }
+            }
         }
 
         internal static void GetUserAwards()
         {
+            Console.WriteLine("Input user Id");
+            string input = Console.ReadLine();
 
+            if (!UserIds.ContainsKey(int.Parse(input)))
+            {
+                Console.WriteLine("Wrong user id");
+                return;
+            }
+
+            Guid newGuid = UserIds[int.Parse(input)];
+
+            try
+            {
+                User newUser = usersmanager.GetUserId(newGuid);
+                Award[] userAwards = usersmanager.GetUserAwards(newUser);
+
+                if(userAwards.Length == 0)
+                {
+                    Console.WriteLine("The User do not have any awards");
+                }
+                else
+                {
+                    Console.WriteLine(UsersStringShort, "Id", "Name");
+                    Console.WriteLine(UsersStringShort, input, newUser.Name.ToString());
+                    Console.WriteLine("User's list of awards:");
+                    Console.WriteLine(AwardsString, "Id", "Award type");
+
+                    foreach(var award in userAwards)
+                    {
+                        Console.WriteLine(AwardsString, AwardIds.Single(n => n.Value == award.Id).Key.ToString());
+                    }
+                }
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine("Wrong user Id");
+                Console.WriteLine(e.Message);
+                return;
+            }
         }
     }
 }

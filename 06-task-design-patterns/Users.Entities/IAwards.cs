@@ -11,5 +11,7 @@ namespace Users.Entities
         bool AddAward(Award award);
         bool AddAwardToUser(Guid user_id, Guid award_id);
         Award GetAward(Guid Id);
+        IEnumerable<Award> GetAllAwards();
+        IEnumerable<Award> GetUserAwards(User user);
     }
 }
