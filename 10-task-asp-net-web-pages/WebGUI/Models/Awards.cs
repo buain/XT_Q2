@@ -7,5 +7,12 @@ namespace WebGUI.Models
 {
     public class Awards
     {
+        public Guid Id { get; set; }
+        public string Title { get; set; }
+        public string ImageAddr { get; set; }
+        public Awards()
+        {
+
+        }
     }
 }
