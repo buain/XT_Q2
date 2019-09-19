@@ -137,7 +137,21 @@ namespace Users.BLL
             {
                 return false;
             }
-
+        }
+        public bool GetAwardImage(Guid awardId)
+        {
+            if(storageawards.GetAward(awardId) == null)
+            {
+                throw new ArgumentException("No award with this Id");
+            }
+            if (storageawards.GetAwardImage(awardId))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }

@@ -13,5 +13,6 @@ namespace Users.Entities
         Award GetAward(Guid Id);
         IEnumerable<Award> GetAllAwards();
         IEnumerable<Award> GetUserAwards(User user);
+        bool GetAwardImage(Guid Id);
     }
 }

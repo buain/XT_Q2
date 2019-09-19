@@ -19,6 +19,7 @@ namespace WebGUI.Models
         public string ImageAddr { get; set; }
 
         public List<Guid> awardList = new List<Guid>();
+        public List<Awards> awardNotHasList = new List<Awards>();
         public Users()
         {
 
@@ -65,6 +66,105 @@ namespace WebGUI.Models
                 yield return user;
             }
         }
+        public static Users GetUser(Guid Id)
+        {
+            var item = BL.usersmanager.GetUserId(Id);
+            Users user = new Users(item.Id, item.Name, item.BirthDay, item.Age, item.GetAwardList());
+            if (BL.usersmanager.GetUserImage(user.Id))
+            {
+                user.ImageAddr = Path.Combine(ImageDirectory, user.Id.ToString());
+            }
+            else
+            {
+                user.ImageAddr = Path.Combine(ImageDirectory, DefaultImage);
+            }
+            user.GetUserNotHasAwards(user.Id);
+            return user;
+        }
+        public void GetUserNotHasAwards(Guid id)
+        {
+            this.awardNotHasList.Clear();
+            User nu = BL.usersmanager.GetUserId(id);
+            List<Award> list = BL.usersmanager.GetUserAwards(nu).ToList();
+            List<Award> all = BL.usersmanager.GetAllAwards().ToList();
 
+            if (list.Count() == 0)
+            {
+                foreach (var item in all)
+                {
+                    Awards award = new Awards(item.Id, item.Title);
+                    if (BL.usersmanager.GetAwardImage(award.Id))
+                    {
+                        award.ImageAddr = Path.Combine(Awards.ImageDirectory, award.Id.ToString());
+                    }
+                    else
+                    {
+                        award.ImageAddr = Path.Combine(Awards.ImageDirectory, Awards.DefaultImage);
+                    }
+                    this.awardNotHasList.Add(award);
+                }
+            }
+            else
+            {
+                foreach (var item in all)
+                {
+                    bool contains = false;
+                    foreach (var other in list)
+                    {
+                        if ((item.Id == other.Id))
+                        {
+                            contains = true;
+                        }
+                    }
+
+                    if (!contains)
+                    {
+                        Awards award = new Awards(item.Id, item.Title);
+                        if (BL.usersmanager.GetAwardImage(award.Id))
+                        {
+                            award.ImageAddr = Path.Combine(Awards.ImageDirectory, award.Id.ToString());
+                        }
+                        else
+                        {
+                            award.ImageAddr = Path.Combine(Awards.ImageDirectory, Awards.DefaultImage);
+                        }
+                        this.awardNotHasList.Add(award);
+                    }
+                }
+            }
+        }
+        public static void CreateUser(Users model)
+        {
+            BL.usersmanager.AddUser(model.Name, model.BirthDay);
+        }
+        public static void DeleteUser(Guid id)
+        {
+            User nu = BL.usersmanager.GetUserId(id);
+            BL.usersmanager.DeleteUser(nu);
+        }
+        public static bool AddAwardToUser(Guid UserId, Guid AwardId)
+        {
+            User nu = BL.usersmanager.GetUserId(UserId);
+            return BL.usersmanager.AddAwardToUser(UserId, AwardId);
+        }
+        public static IEnumerable<Awards> GetUserAwards(Guid id)
+        {
+            User nu = BL.usersmanager.GetUserId(id);
+            var list = BL.usersmanager.GetUserAwards(nu);
+            foreach (var item in list)
+            {
+                Awards award = new Awards(item.Id, item.Title);
+                if (BL.usersmanager.GetAwardImage(award.Id))
+                {
+                    award.ImageAddr = Path.Combine(Awards.ImageDirectory, award.Id.ToString());
+                }
+                else
+                {
+                    award.ImageAddr = Path.Combine(Awards.ImageDirectory, Awards.DefaultImage);
+                }
+                yield return award;
+
+            }
+        }
     }
 }
