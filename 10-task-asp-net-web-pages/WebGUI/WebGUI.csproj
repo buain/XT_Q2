@@ -135,7 +135,9 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Awards.cs" />
+    <Compile Include="Models\BL.cs" />
     <Compile Include="Models\Users.cs" />
+    <Compile Include="Models\UsersContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -116,5 +116,28 @@ namespace Users.BLL
         {
             return storageawards.GetUserAwards(user).ToArray();
         }
+        public bool GetUserImage(Guid userId)
+        {
+            if (storageusers.GetUser(userId) == null)
+            {
+                throw new ArgumentException("No such user with this Id");
+            }
+            try
+            {
+                if (storageusers.GetUserImage(userId))
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch
+            {
+                return false;
+            }
+
+        }
     }
 }

@@ -68,17 +68,26 @@ namespace Users.Entities
         }
         public User(string name, DateTime birthday)
         {
-            this.Id = Guid.NewGuid();
-            this.Name = name;
-            this.BirthDay = birthday;
+            Id = Guid.NewGuid();
+            Name = name;
+            BirthDay = birthday;
         }
-        public User(string name, DateTime birthday, IEnumerable<Guid> _list):
+        public User(string name, DateTime birthday, IEnumerable<Guid> inputlist):
             this(name, birthday)
         {
-            this.Id = Guid.NewGuid();
-            this.Name = name;
-            this.BirthDay = birthday;
-            this.Age = age;
+            Id = Guid.NewGuid();
+            Name = name;
+            BirthDay = birthday;
+            awardList = inputlist.ToList();
+        }
+        private List<Guid> awardList = new List<Guid>();
+        public void AddAward(Guid Id)
+        {
+            awardList.Add(Id);
+        }
+        public List<Guid> GetAwardList()
+        {
+            return awardList;
         }
     }
 }
