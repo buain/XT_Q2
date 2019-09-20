@@ -1,4 +1,22 @@
 ﻿@{
-    ViewBag.Title = "Home Page";
+    ViewBag.Title = "Index";
 }
 
+<h2 class="h2">Main page</h2>
+
+<div>
+    @Html.ActionLink("Users", "Index", "Users")
+</div>
+
+@if (User.IsInRole("Admin"))
+{
+    <div>
+        @Html.ActionLink("Awards", "Index", "Awards")
+    </div>
+}
+@if (User.IsInRole("Admin"))
+{
+    <div>
+        @Html.ActionLink("Admin's page", "Index", "Account")
+    </div>
+}

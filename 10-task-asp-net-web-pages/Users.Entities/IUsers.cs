@@ -14,6 +14,7 @@ namespace Users.Entities
         User GetUser(Guid Id);
         IEnumerable<User> GetAllUsers();
         bool GetUserImage(Guid Id);
+        bool SetUserImage(Guid Id);
         bool RemoveUserImage(Guid Id);
          
     }

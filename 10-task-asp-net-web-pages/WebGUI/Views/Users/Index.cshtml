@@ -1,17 +1,54 @@
-﻿@{
-    Layout = null;
+﻿@model IEnumerable<WebGUI.Models.Users>
+
+@{
+    ViewBag.Title = "Users";
 }
 
-<!DOCTYPE html>
+<h2>Users</h2>
+@if (User.IsInRole("Admin"))
+{
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+}
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title></title>
-</head>
-<body>
-    <div>
-    
-    </div>
-</body>
-</html>
+<table class="table">
+    <tr>
+        <th></th>
+        <th>
+            Name
+        </th>
+        <th></th>
+        <th></th>
+    </tr>
+
+@foreach(var item in Model)
+{
+    var awList = item.awardList;
+    <tr>
+        <td>
+            <div class="span1">
+                <img src="@Url.Action("GetUserImage", new { path = item.ImageAddr})" class="img-thumbnail" />
+            </div>
+            <div class="span1"></div>
+            <div class="span2"></div>
+            <div class="span3"></div>
+            <div class="span4"></div>
+        </td>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+
+        @if(User.IsInRole("Admin") || User.IsInRole("User"))
+        {
+            <td>
+                @Html.ActionLink("Details", "Details", new { id = item.Id})
+            </td>
+            <td>
+                @Html.Action("GetUserAwardsToIndex", "Users", new { id = item.Id})
+            </td>
+        }
+    </tr>
+}
+</table>

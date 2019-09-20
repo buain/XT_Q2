@@ -31,5 +31,62 @@ namespace WebGUI.Models
             Title = title;
             ImageAddr = Path.Combine(ImageDirectory, DefaultImage);
         }
+        public static IEnumerable<Awards> GetAllAwards()
+        {
+            var list = BL.usersmanager.GetAllAwards();
+            foreach(var item in list)
+            {
+                Awards award = new Awards(item.Id, item.Title);
+                if (BL.usersmanager.GetAwardImage(award.Id))
+                {
+                    award.ImageAddr = Path.Combine(ImageDirectory, award.Id.ToString());
+                }
+                else
+                {
+                    award.ImageAddr = Path.Combine(ImageDirectory, DefaultImage);
+                }
+                yield return award;
+            }
+        }
+        public static Awards GetAward(Guid id)
+        {
+            var item = BL.usersmanager.GetAwardId(id);
+            Awards award = new Awards(item.Id, item.Title);
+            if (BL.usersmanager.GetAwardImage(award.Id))
+            {
+                award.ImageAddr = Path.Combine(ImageDirectory, award.Id.ToString());
+            }
+            else
+            {
+                award.ImageAddr = Path.Combine(ImageDirectory, DefaultImage);
+            }
+            return award;
+        }
+        public static void CreateAward(Award model)
+        {
+            BL.usersmanager.AddAward(model.Title);
+        }
+        public static bool CheckAwardTitle(string title)
+        {
+            var list = BL.usersmanager.GetAllAwards();
+            foreach (var aw in list)
+            {
+                if (aw.Title == title)
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+        public void SetImage()
+        {
+            BL.usersmanager.SetAwardImage(Id);
+            ImageAddr = Path.Combine(ImageDirectory, Id.ToString());
+        }
+        public void RemoveImage()
+        {
+            BL.usersmanager.RemoveAwardImage(Id);
+            ImageAddr = Path.Combine(ImageDirectory, DefaultImage);
+        }
     }
 }

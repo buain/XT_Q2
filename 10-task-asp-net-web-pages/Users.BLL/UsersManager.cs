@@ -63,6 +63,7 @@ namespace Users.BLL
                 return false;
             }
         }
+        
         public bool AddAward(string title)
         {
             var award = new Award(title);
@@ -138,6 +139,36 @@ namespace Users.BLL
                 return false;
             }
         }
+        public bool SetUserImage(Guid userId)
+        {
+            if (storageusers.GetUser(userId) == null)
+            {
+                throw new ArgumentException("No user with such Id");
+            }
+            if (storageusers.SetUserImage(userId))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        public bool RemoveUserImage(Guid userId)
+        {
+            if(storageusers.GetUser(userId) == null)
+            {
+                throw new ArgumentException("No user with such Id");
+            }
+            if (storageusers.RemoveUserImage(userId))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
         public bool GetAwardImage(Guid awardId)
         {
             if(storageawards.GetAward(awardId) == null)
@@ -145,6 +176,40 @@ namespace Users.BLL
                 throw new ArgumentException("No award with this Id");
             }
             if (storageawards.GetAwardImage(awardId))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        public Award GetAwardId(Guid Id)
+        {
+            return storageawards.GetAward(Id);
+        }
+        public bool SetAwardImage(Guid awardId)
+        {
+            if(storageawards.GetAward(awardId) == null)
+            {
+                throw new ArgumentException("No award with this Id");
+            }
+            if (storageawards.SetAwardImage(awardId))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        public bool RemoveAwardImage(Guid awardId)
+        {
+            if(storageawards.GetAward(awardId) == null)
+            {
+                throw new ArgumentException("No award with this Id");
+            }
+            if (storageawards.RemoveAwardImage(awardId))
             {
                 return true;
             }

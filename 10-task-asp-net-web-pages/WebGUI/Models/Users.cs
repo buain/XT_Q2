@@ -163,8 +163,29 @@ namespace WebGUI.Models
                     award.ImageAddr = Path.Combine(Awards.ImageDirectory, Awards.DefaultImage);
                 }
                 yield return award;
-
             }
+        }
+        public static bool CheckUserName(string username)
+        {
+            var list = BL.usersmanager.GetAllUsers();
+            foreach (var user in list)
+            {
+                if (user.Name == username)
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+        public void SetImage()
+        {
+            BL.usersmanager.SetUserImage(Id);
+            ImageAddr = Path.Combine(ImageDirectory, Id.ToString());
+        }
+        public void RemoveImage()
+        {
+            BL.usersmanager.RemoveUserImage(Id);
+            ImageAddr = Path.Combine(ImageDirectory, DefaultImage);
         }
     }
 }

@@ -14,5 +14,7 @@ namespace Users.Entities
         IEnumerable<Award> GetAllAwards();
         IEnumerable<Award> GetUserAwards(User user);
         bool GetAwardImage(Guid Id);
+        bool SetAwardImage(Guid Id);
+        bool RemoveAwardImage(Guid Id);
     }
 }
