@@ -3,10 +3,11 @@
     ViewBag.Title = "UploadImage";
 
 }
-<h2>UploadImage</h2>
-@using (Html.BeginForm("UploadImage", "Awards", FormMethod.Post, new { enctype = "multipart/form-data", id = Model }))
+<h2>Upload Image</h2>
+@using (Html.BeginForm("UploadImage", "Users", FormMethod.Post, new { enctype = "multipart/form-data", id = Model }))
 {
     @Html.AntiForgeryToken()
+
     <table class="table">
         <tr>
             <th>
@@ -20,4 +21,10 @@
             </td>
         </tr>
     </table>
+
+
 }
+<div>
+    @Html.ActionLink("Back to Details", "Details", new { id = Model })
+</div>
+

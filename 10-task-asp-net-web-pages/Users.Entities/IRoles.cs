@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace Users.Entities
 {
-    public class IRoles
+    public interface IRoles
     {
         bool AddAccount(Account account);
-        bool AddRoleToAccount(System.Guid AccountID, Guid RoleId);
+        bool AddRoleToAccount(System.Guid AccountId, Guid RoleId);
         Account GetAccount(System.Guid id);
         bool DeleteAccount(Account account);
         IEnumerable<Role> GetAccountRoles(Account account);
@@ -17,7 +17,7 @@ namespace Users.Entities
         IEnumerable<Account> GetAllAccounts();
         Account GetAccount(string username);
         Role GetRole(Guid id);
-        bool DeleteRoleFromAccount(Guid AccountID, Guid RoleId);
+        bool DeleteRoleFromAccount(Guid AccountId, Guid RoleId);
         IEnumerable<Role> GetNoAccountRoles(Account account);
     }
 }

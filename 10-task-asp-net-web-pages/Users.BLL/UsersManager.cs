@@ -13,7 +13,8 @@ namespace Users.BLL
     {
         private IUsers storageusers; //=> Dependensies.FileStorage;
         private IAwards storageawards;
-        
+        private IRoles storageroles;
+
         public UsersManager()
         {
             storageusers = new FileStorageUsers();
@@ -217,6 +218,69 @@ namespace Users.BLL
             {
                 return false;
             }
+        }
+        public bool CreateAccount(Account account)
+        {
+            if (storageroles.AddAccount(account))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public bool AddRoleToAccount(Guid AccountId, Guid RoleId)
+        {
+            if (storageroles.AddRoleToAccount(AccountId, RoleId))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public Account GetAccount(Guid id)
+        {
+            return storageroles.GetAccount(id);
+        }
+
+        public Account GetAccount(string username)
+        {
+            return storageroles.GetAccount(username);
+        }
+
+        public Role GetRole(Guid id)
+        {
+            return storageroles.GetRole(id);
+        }
+
+        public IEnumerable<Role> GetAccountRoles(Account account)
+        {
+            return storageroles.GetAccountRoles(account).ToArray();
+        }
+
+        public IEnumerable<Role> GetNoAccountRoles(Account account)
+        {
+            return storageroles.GetNoAccountRoles(account).ToArray();
+        }
+
+        public IEnumerable<Role> GetAllRoles()
+        {
+            return storageroles.GetAllRoles().ToArray();
+        }
+
+        public IEnumerable<Account> GetAllAccounts()
+        {
+            return storageroles.GetAllAccounts().ToArray();
+        }
+
+        public bool DeleteRoleFromAccount(Guid AccountID, Guid RoleID)
+        {
+            return storageroles.DeleteRoleFromAccount(AccountID, RoleID);
         }
     }
 }

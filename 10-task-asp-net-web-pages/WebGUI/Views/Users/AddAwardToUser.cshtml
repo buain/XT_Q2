@@ -1,0 +1,41 @@
+﻿@model WebGUI.Models.Users
+@{
+    ViewBag.Title = "AddAwardToUser";
+    var list = Model.awardNotHasList;
+}
+<h2>AddAwardToUser</h2>
+
+@foreach (var item in list)
+{
+    using (Html.BeginForm())
+    {
+        @Html.ValidationSummary(true)
+        <fieldset>
+            <legend></legend>
+
+            <div class="row-fluid show-grid">
+                <div class="span1">
+                    <img src="@Url.Action("GetAwardImage", "Awards", new { path = item.ImageAddr })" class="img-thumbnail" />
+                </div>
+                <div class="span1"></div>
+                <div class="span2"></div>
+                <div class="span4"></div>
+                <div class="span4"></div>
+            </div>
+
+            <div class="editor-field">
+                @Html.DisplayFor(modelItem => item.Title)
+            </div>
+            @Html.Hidden("UserID", Model.Id)
+            @Html.Hidden("AwardID", item.Id)
+            @Html.AntiForgeryToken()
+            <p>
+                <input type="submit" value="Add" />
+            </p>
+        </fieldset>
+    }
+}
+<div>
+    @Html.ActionLink("Back to Details", "Details", new { id = Model.Id })
+</div>
+

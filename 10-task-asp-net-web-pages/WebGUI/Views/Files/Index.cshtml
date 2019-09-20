@@ -1,17 +1,15 @@
-﻿@{
-    Layout = null;
+﻿@model WebGUI.Models.FileDescription
+@{
+    ViewBag.Title = "Index";
 }
-
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title></title>
-</head>
-<body>
-    <div>
-    
-    </div>
-</body>
-</html>
+<h2>Index</h2>
+@if (Model == null)
+{
+    <div>File not loaded</div>
+    @Html.ActionLink("UploadImage", "UploadImage");
+}
+else
+{
+    <div>File @Model.Name loaded</div>
+    <img src="@Url.Action("GetImage")" />
+}

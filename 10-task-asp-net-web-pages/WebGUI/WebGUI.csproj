@@ -136,7 +136,10 @@
     </Compile>
     <Compile Include="Models\Awards.cs" />
     <Compile Include="Models\BL.cs" />
+    <Compile Include="Models\ConfirmationModel.cs" />
     <Compile Include="Models\FileDescription.cs" />
+    <Compile Include="Models\LoginModel.cs" />
+    <Compile Include="Models\MyRoleProvider.cs" />
     <Compile Include="Models\Users.cs" />
     <Compile Include="Models\DataFile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -185,6 +188,10 @@
     <Content Include="Views\Awards\UploadImage.cshtml" />
     <Content Include="Views\Files\Index.cshtml" />
     <Content Include="Views\Files\UploadImage.cshtml" />
+    <Content Include="Views\Users\AddAwardToUser.cshtml" />
+    <Content Include="Views\Users\GetUserAwards.cshtml" />
+    <Content Include="Views\Users\GetUserAwardsToIndex.cshtml" />
+    <Content Include="Views\Users\UploadImage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

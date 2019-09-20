@@ -1,17 +1,11 @@
-﻿@{
-    Layout = null;
+﻿@model WebGUI.Models.Users
+@{
+    ViewBag.Title = "UserAwards";
 }
+<h2>UserAwards</h2>
 
-<!DOCTYPE html>
+@Html.Action("GetUserAwards", Model.Id)
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title></title>
-</head>
-<body>
-    <div>
-    
-    </div>
-</body>
-</html>
+<div>
+    @Html.ActionLink("Back to Details", "Details", new { id = Model.Id })
+</div>

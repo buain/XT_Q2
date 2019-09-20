@@ -3,9 +3,14 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
-    @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
+    <title>@ViewBag.Title - Users&AwardsApplication</title>
+    <link href="../../Content/Site.css" rel="stylesheet" />
+    <link href="../../Content/bootstrap.css" rel="stylesheet" />
+    <script src="~/bundles/modernizr-2.5.3.js"></script>
+    <link href="../../Content/themes/base/jquery-ui.css" rel="stylesheet" />
+    <link href="../../Content/themes/base/jquery.ui.all.css" rel="stylesheet" />
+    <link href="../../Content/themes/base/jquery.ui.datepicker.css" rel="stylesheet" />
+    <link href="../../Content/themes/base/jquery.ui.all.css" rel="stylesheet" />
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -16,7 +21,11 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Users&Awards", "Index", "Home", new { area = "" },
+               new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-brand">
+                @Html.Action("UserInfo", "Account")
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav"></ul>
@@ -25,10 +34,30 @@
     </div>
     <div class="container body-content">
         @RenderBody()
-        <hr />
-        
-    </div>
+        <script src="~/Scripts/jquery-2.1.1.min.js"></script>
+        <script src="~/Scripts/jquery-ui-1.10.4.min.js"></script>
+        <script src="~/Scripts/bootstrap.js"></script>
+        <script src="~/Scripts/bootstrap-datepicker.js"></script>
+        <script src="~/Scripts/modernizr-2.7.2.js"></script>
 
-   
+        @RenderSection("scripts", required: false)
+        <script type="text/javascript">
+            $(function () {
+                if (Modernizr.meter) {
+                    if (!Modernizr.inputtypes.date) {
+                        $(function () {
+                            $("input[type='date']")
+                                //.datepicker({ dateFormat: "dd/mm/yyyy" })
+                                .datepicker({ dateFormat: "mm/dd/yyyy" })
+                                .get(0)
+                                .setAttribute("type", "text");
+
+                        });
+                    }
+                }
+            });
+        </script>
+        @*  *@
+    </div>
 </body>
 </html>

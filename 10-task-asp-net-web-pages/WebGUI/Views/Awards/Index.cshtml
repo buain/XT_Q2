@@ -1,17 +1,44 @@
-﻿@{
-    Layout = null;
+﻿@model IEnumerable<WebGUI.Models.Awards>
+@{
+    ViewBag.Title = "Index";
 }
+<h2>Index</h2>
+@if (User.IsInRole("Admin"))
+{
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+}
+<table class="table">
+    <tr>
+        <th></th>
+        <th>
+            Title
+        </th>
+        <th></th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                <div class="row-fluid show-grid">
+                    <div class="span1">
+                        <img src="@Url.Action("GetAwardImage", new { path = item.ImageAddr })" class="img-thumbnail" />
+                    </div>
+                    <div class="span1"></div>
+                    <div class="span2"></div>
+                    <div class="span4"></div>
+                    <div class="span4"></div>
+                </div>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.ActionLink("Change image", "UploadImage", new { id = item.ID }) |
+                @Html.ActionLink("Remove image", "RemoveImage", new { id = item.ID })
 
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title></title>
-</head>
-<body>
-    <div>
-    
-    </div>
-</body>
-</html>
+            </td>
+        </tr>
+    }
+</table>
