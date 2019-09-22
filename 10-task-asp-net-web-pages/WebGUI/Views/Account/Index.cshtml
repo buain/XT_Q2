@@ -1,0 +1,33 @@
+﻿@model IEnumerable<Users.Entities.Account>
+@{
+    ViewBag.Title = "Index";
+}
+<h2>Admin's Page</h2>
+
+<table>
+    <tr>
+        <th>
+
+            @Html.DisplayNameFor(model => model.Login)
+
+        </th>
+        <th></th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            @if (User.Identity.Name != item.Login)
+            {
+                <td>
+                    @Html.DisplayFor(modelItem => item.Login)
+
+                </td>
+                <td>
+                    @Html.ActionLink("AddRole", "AddRole", new { AccountID = item.ID }) |
+                    @Html.ActionLink("DeleteRole", "DeleteRole", new { AccountID = item.ID }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.ID })
+                </td>
+            }
+        </tr>
+    }
+</table>
