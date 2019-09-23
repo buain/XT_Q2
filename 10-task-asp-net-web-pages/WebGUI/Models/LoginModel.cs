@@ -65,7 +65,7 @@ namespace WebGUI.Models
         {
             var account = new Account()
             {
-                ID = Guid.NewGuid(),
+                Id = Guid.NewGuid(),
                 Login = model.Username,
                 Password = model.Password,
             };

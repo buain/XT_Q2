@@ -9,7 +9,7 @@ namespace Users.Entities
 {
     public class Account
     {
-        public Guid ID { get; set; }
+        public Guid Id { get; set; }
 
         [Required]
         [StringLength(255, MinimumLength = 1, ErrorMessage = "Length line must be from 1 to 255 symbols")]
