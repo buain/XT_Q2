@@ -125,6 +125,8 @@
     <Content Include="Views\Files\GetAllFiles.cshtml" />
     <Content Include="Views\Images\GetAllImages.cshtml" />
     <Content Include="Views\News\GetAllNews.cshtml" />
+    <Content Include="Views\_Footer.cshtml" />
+    <Content Include="Views\_LeftBar.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
