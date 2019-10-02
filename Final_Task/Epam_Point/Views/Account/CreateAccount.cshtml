@@ -1,7 +1,35 @@
 ﻿
 @{
-    Layout = "/Shared/_Layout.cshtml";
-    Page.Name = "CreateAccount";
+                /**/
+
+                Layout = "/Shared/_Layout.cshtml";
+                Page.Name = "CreateAccount";
+}
+
+@{
+    Validation.RequireField("Имя", "Введите Имя.");
+    Validation.RequireField("Псевдоним", "Введите Псевдоним.");
+    Validation.RequireField("Пароль", "Введите Пароль.");
+    Validation.RequireField("Роль", "Введите Вид учетной записи (Admin, User).");
+
+    var db = Database.Open("Point");
+    var Name = Request.Form["Name"];
+    var Nik = Request.Form["Nik"];
+    var Password = Request.Form["Password"];
+    var Role = Request.Form["Role"];
+
+    if (IsPost && Validation.IsValid())
+    {
+        if (ModelState.IsValid)
+        {
+            var insertQuery = "INSERT INTO Accounts (Name, Nik, Password, Role) " +
+               "VALUES (@0, @1, @2, @3)";
+            db.Execute(insertQuery, Name, Nik, Password, Role);
+
+            // Display the page that lists accounts.
+            //Response.Redirect("~/ListAccounts");
+        }
+    }
 }
 
 <h2>CreateAccount</h2>
