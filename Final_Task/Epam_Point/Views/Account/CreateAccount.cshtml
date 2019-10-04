@@ -12,7 +12,7 @@
     Validation.RequireField("Пароль", "Введите Пароль.");
     Validation.RequireField("Роль", "Введите Вид учетной записи (Admin, User).");
 
-    var db = Database.Open("Point");
+    var db = Database.Open("EpamPoint");
     var Name = Request.Form["Name"];
     var Nik = Request.Form["Nik"];
     var Password = Request.Form["Password"];
