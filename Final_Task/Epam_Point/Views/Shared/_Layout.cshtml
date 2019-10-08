@@ -18,12 +18,16 @@
         <header>
             @RenderPage("~/Views/_Header.cshtml")
         </header>
+    </div>
+    <div>
         <aside>
             @RenderPage("~/Views/_LeftBar.cshtml")
         </aside>
-        <div class="content">
+    </div>
+    <div class="content">
             @RenderBody()
-        </div>
+    </div>
+    <div>
         @RenderPage("~/Views/_Footer.cshtml")
     </div>
     
