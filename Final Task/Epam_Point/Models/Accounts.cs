@@ -13,4 +13,9 @@ namespace Epam_Point.Models
         public string Password { get; set; }
         public string Role { get; set; }
     }
+    public class Role
+    {
+        public int RoleId { get; set; }
+        public string RoleName { get; set; }
+    }
 }
